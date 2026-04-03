@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Contact Us</title>
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2300f0ff'/%3E%3Cstop offset='100%25' stop-color='%238a2be2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z' fill='url(%23g)'/%3E%3Cpath d='M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z' fill='%230f172a'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%2300f0ff'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme || systemTheme);
+        })();
+    </script>
+    <style>
+        /* Strict Rules applied in style.css, overriding standard transitions just for safety */
+        .contact-form .form-control {
+            transition: border-color 0s;
+            /* No distracting hover animations */
+        }
+
+        .contact-form .form-control:hover {
+            border-color: var(--border-subtle);
+            /* Keep static on hover */
+        }
+
+        .contact-form .form-control:focus {
+            border-color: var(--primary-blue);
+            /* Clear focus styling */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+        <!-- Navigation -->
+        <header class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 10px;">
+                    <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z" fill="url(#grad1)" />
+                        <path d="M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z" fill="var(--bg-dark)" />
+                        <circle cx="50" cy="50" r="15" fill="var(--primary-blue)" />
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="var(--primary-blue)" />
+                                <stop offset="100%" stop-color="var(--secondary-purple)" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>AURA</span>
+                </a>
+                <nav class="nav-links">
+                    <div class="dropdown">
+                        <a href="index.html" class="dropbtn">Home <i class="fa-solid fa-chevron-down"
+                                style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="index.html">Home 1</a>
+                            <a href="index2.html">Home 2</a>
+                        </div>
+                    </div>
+
+                    <a href="products.html">Products</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html" class="active">Contact</a>
+
+                    <div class="dropdown">
+                        <a href="user-dashboard.html" class="dropbtn">Dashboards <i class="fa-solid fa-chevron-down"
+                                style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="user-dashboard.html">User Dashboard</a>
+                            <a href="admin-dashboard.html">Admin Dashboard</a>
+                        </div>
+                    </div>
+                    <div class="show-mobile" style="flex-direction: column; width: 100%; gap: 10px; margin-top: 20px;">
+                        <a href="login.html" class="btn btn-outline btn-nav" style="width: 100%;">Login</a>
+                        <a href="signup.html" class="btn btn-primary btn-nav" style="width: 100%;">Sign Up</a>
+                    </div>
+                </nav>
+                <div class="nav-icons">
+                    <button id="rtl-btn" class="nav-icon"
+                        style="background: none; border: none; cursor: pointer; color: var(--text-main);"
+                        title="Toggle RTL/LTR">
+                        <i class="fa-solid fa-globe"></i>
+                    </button>
+                    <button id="theme-toggle" class="nav-icon" title="Toggle Dark/Light Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    </button>
+
+                    <div class="hide-mobile" style="display: flex; gap: 15px; align-items: center;">
+                        <a href="login.html" class="btn btn-outline btn-nav">Login</a>
+                        <a href="signup.html" class="btn btn-primary btn-nav">Sign Up</a>
+                    </div>
+
+                    <div class="hamburger"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content" style="background: var(--bg-surface-elevated);">
+            <!-- Page Hero -->
+            <section class="hero-section"
+                style="padding: 120px 0; background: linear-gradient(rgba(10, 12, 16, 0.85), rgba(10, 12, 16, 0.85)), url('https://images.unsplash.com/photo-1516387083627-23f26e382023?q=80&w=2000&auto=format&fit=crop') center/cover; text-align: center;">
+                <div class="container" style="position: relative; z-index: 2; max-width: 800px;">
+                    <span class="text-gradient" style="font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; display: block; margin-bottom: 20px;">Ready to Talk?</span>
+                    <h1 style="font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px; color: #fff;">Get in <span class="text-gradient">Touch</span></h1>
+                    <p class="hero-subtext" style="font-size: 1.25rem; max-width: 700px; margin: 0 auto; line-height: 1.6; color: rgba(255, 255, 255, 0.8);">Have a question about AURA products, order status, or need technical support? We're here to help.</p>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="container" style="padding-bottom: 80px;">
+                <div class="contact-split-layout">
+
+                    <!-- Contact Information Cards -->
+                    <div class="contact-info-column">
+                        <div class="contact-info-card">
+                            <div class="icon-wrapper"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <h4>Global Headquarters</h4>
+                                <p class="text-muted">123 Quantum Drive, Building A<br>Silicon Valley, CA
+                                    94043<br>United States</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-card">
+                            <div class="icon-wrapper"><i class="fa-solid fa-envelope"></i></div>
+                            <div>
+                                <h4>Direct Email Access</h4>
+                                <p class="text-muted">support@aura.com<br>enterprise@aura.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-card">
+                            <div class="icon-wrapper"><i class="fa-solid fa-headset"></i></div>
+                            <div>
+                                <h4>24/7 Priority Support</h4>
+                                <p class="text-muted">+1 (800) AURA-TECH<br>Mon-Sun, Available 24/7</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form Glass Panel -->
+                    <div class="contact-form-column" style="position: relative; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=800&auto=format&fit=crop"
+                            alt="Contact Decoration"
+                            style="position: absolute; top: -50px; right: -150px; width: 300px; height: 300px; opacity: 0.1; filter: grayscale(1); pointer-events: none;">
+                        <h2 style="margin-bottom: 10px;">Send a Secure Message</h2>
+                        <p class="text-muted" style="margin-bottom: 40px;">Fill out the form below and an AURA
+                            representative will be assigned to your query.</p>
+
+                        <form class="contact-form">
+                            <div class="grid grid-2" style="gap: 20px;">
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label>First Name *</label>
+                                    <input type="text" class="form-control" placeholder="John" required>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label>Last Name *</label>
+                                    <input type="text" class="form-control" placeholder="Doe" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 24px;">
+                                <label>Work Email *</label>
+                                <input type="email" class="form-control" placeholder="john@company.com" required>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 24px;">
+                                <label>Inquiry Type *</label>
+                                <select class="form-control" required style="appearance: auto;">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="order">Order Tracking / Returns</option>
+                                    <option value="product">Hardware Technical Support</option>
+                                    <option value="business">Enterprise Sales</option>
+                                    <option value="other">General Feedback</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 24px;">
+                                <label>Detailed Message *</label>
+                                <textarea class="form-control" rows="5"
+                                    placeholder="Please describe your issue or inquiry in detail..."
+                                    required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full"
+                                style="padding: 16px; font-size: 1.1rem; margin-top: 20px;">
+                                Transmit Message <i class="fa-solid fa-paper-plane" style="margin-left: 8px;"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <!-- Full Width Immersive Map Location -->
+                <div class="contact-map-full">
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2000&auto=format&fit=crop"
+                        alt="Stylized Dark Map">
+                    <div class="contact-map-overlay">
+                        <i class="fa-solid fa-street-view" style="color: var(--primary-blue);"></i> View on Interactive
+                        Map
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-top">
+                    <div>
+                        <a href="index.html" class="brand footer-brand"
+                            style="display: flex; align-items: center; gap: 10px;">
+                            <svg width="32" height="32" viewBox="0 0 100 100" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z" fill="url(#grad2)" />
+                                <path d="M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z" fill="var(--bg-dark)" />
+                                <circle cx="50" cy="50" r="15" fill="var(--primary-blue)" />
+                                <defs>
+                                    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="var(--primary-blue)" />
+                                        <stop offset="100%" stop-color="var(--secondary-purple)" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>AURA</span>
+                        </a>
+                        <p class="footer-text">The ultimate destination for next-generation technology. We provide
+                            premium electronics with exceptional customer service and secure delivery.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="products.html">All Products</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">Categories</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Computers & Laptops</a></li>
+                            <li><a href="#">Smartphones</a></li>
+                            <li><a href="#">Audio & Headphones</a></li>
+                            <li><a href="#">Gaming Consoles</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">Contact Us</h4>
+                        <ul class="footer-contact">
+                            <li><i class="fa-solid fa-location-dot"></i> <span>123 Tech Avenue, Silicon Valley, CA
+                                    94043</span></li>
+                            <li><i class="fa-solid fa-envelope"></i> <span>support@technova.com</span></li>
+                            <li><i class="fa-solid fa-phone"></i> <span>+1 (800) 123-4567</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2026 AURA Electronics. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

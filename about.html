@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | About Us</title>
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2300f0ff'/%3E%3Cstop offset='100%25' stop-color='%238a2be2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z' fill='url(%23g)'/%3E%3Cpath d='M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z' fill='%230f172a'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%2300f0ff'/%3E%3C/svg%3E">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme || systemTheme);
+        })();
+    </script>
+    <style>
+        @media (max-width: 360px) {
+            .about-kicker {
+                font-size: 0.72rem !important;
+                letter-spacing: 1px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .about-story-title {
+                font-size: 1.75rem !important;
+                line-height: 1.25 !important;
+                margin-bottom: 14px !important;
+            }
+
+            .about-text h2:not(.about-story-title) {
+                font-size: 2rem !important;
+                margin-bottom: 18px !important;
+            }
+
+            .about-text p {
+                font-size: 1rem !important;
+            }
+
+            section.section-padding.container div[style*="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;"] {
+                grid-template-columns: 1fr !important;
+                padding: 20px !important;
+                gap: 12px !important;
+            }
+
+            section.section-padding[style*="background: var(--bg-surface);"] .container.grid.grid-2>div {
+                padding: 24px !important;
+            }
+
+            section[style*="height: 400px; position: relative; overflow: hidden;"] {
+                height: 300px !important;
+            }
+
+            section[style*="height: 400px; position: relative; overflow: hidden;"] h2 {
+                font-size: 1.65rem !important;
+                line-height: 1.25 !important;
+            }
+
+            .team-card div[style*="width: 200px; height: 200px;"] {
+                width: 140px !important;
+                height: 140px !important;
+            }
+
+            section.section-padding.container.text-center>div[style*="padding: 60px;"] {
+                padding: 28px 20px !important;
+            }
+
+            section[style*="background: var(--bg-surface-elevated); border-top: 1px solid var(--border-subtle);"] div[style*="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; opacity: 0.7;"] {
+                gap: 20px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+        <!-- Navigation -->
+        <header class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 10px;">
+                    <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z" fill="url(#grad1)" />
+                        <path d="M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z" fill="var(--bg-dark)" />
+                        <circle cx="50" cy="50" r="15" fill="var(--primary-blue)" />
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="var(--primary-blue)" />
+                                <stop offset="100%" stop-color="var(--secondary-purple)" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>AURA</span>
+                </a>
+                <nav class="nav-links">
+                    <div class="dropdown">
+                        <a href="index.html" class="dropbtn">Home <i class="fa-solid fa-chevron-down"
+                                style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="index.html">Home 1</a>
+                            <a href="index2.html">Home 2</a>
+                        </div>
+                    </div>
+
+                    <a href="products.html">Products</a>
+                    <a href="about.html" class="active">About</a>
+                    <a href="contact.html">Contact</a>
+
+                    <div class="dropdown">
+                        <a href="user-dashboard.html" class="dropbtn">Dashboards <i class="fa-solid fa-chevron-down"
+                                style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="user-dashboard.html">User Dashboard</a>
+                            <a href="admin-dashboard.html">Admin Dashboard</a>
+                        </div>
+                    </div>
+                    <div class="show-mobile" style="flex-direction: column; width: 100%; gap: 10px; margin-top: 20px;">
+                        <a href="login.html" class="btn btn-outline btn-nav" style="width: 100%;">Login</a>
+                        <a href="signup.html" class="btn btn-primary btn-nav" style="width: 100%;">Sign Up</a>
+                    </div>
+                </nav>
+                <div class="nav-icons">
+                    <button id="rtl-btn" class="nav-icon"
+                        style="background: none; border: none; cursor: pointer; color: var(--text-main);"
+                        title="Toggle RTL/LTR">
+                        <i class="fa-solid fa-globe"></i>
+                    </button>
+                    <button id="theme-toggle" class="nav-icon" title="Toggle Dark/Light Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+                    <div class="hide-mobile" style="display: flex; gap: 15px; align-items: center;">
+                        <a href="login.html" class="btn btn-outline btn-nav">Login</a>
+                        <a href="signup.html" class="btn btn-primary btn-nav">Sign Up</a>
+                    </div>
+
+                    <div class="hamburger"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+        </header>
+
+            <!-- Page Hero -->
+            <section class="hero-section"
+                style="padding: 120px 0; background: linear-gradient(var(--nav-bg-solid), var(--nav-bg-solid)), url('https://images.unsplash.com/photo-1516387083627-23f26e382023?q=80&w=2000&auto=format&fit=crop') center/cover; text-align: center;">
+                <div class="container" style="max-width: 800px;">
+                    <span class="text-gradient" style="font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; display: block; margin-bottom: 20px;">Established 2020</span>
+                    <h1 style="font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px;">Our Vision for <br><span class="text-gradient">Personal Tech</span></h1>
+                    <p class="text-muted" style="font-size: 1.25rem; max-width: 700px; margin: 0 auto; line-height: 1.6;">At AURA, we're not just selling devices; we're engineering the interface between human creativity and digital power.</p>
+                </div>
+            </section>
+
+            <!-- Company Story -->
+            <section class="section-padding container">
+                <div class="grid grid-2" style="gap: 60px; align-items: center;">
+                    <div class="about-text">
+                        <span class="text-gradient about-kicker" style="font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; display: block; margin-bottom: 15px;">The Beginning</span>
+                        <h2 class="about-story-title" style="font-size: 3rem; margin-bottom: 25px;">Our Story</h2>
+                        <p class="text-muted" style="margin-bottom: 20px; font-size: 1.15rem; line-height: 1.6;">Founded in 2020 by a group
+                            of hardware enthusiasts, AURA started with a simple mission: to make premium,
+                            high-performance electronics accessible to everyone. What began as a small boutique PC
+                            building service in a garage has rapidly evolved into a leading online destination for all
+                            consumer electronics.</p>
+                        <p class="text-muted" style="font-size: 1.15rem; line-height: 1.6;">We realized that the tech retail experience was
+                            broken—filled with confusing jargon, poor customer support, and uninspired curation. We set
+                            out to change that by focusing on rigorous testing, expert curation, and a frictionless
+                            shopping experience.</p>
+                    </div>
+                    <div
+                        style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: 20px; padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div
+                            style="text-align: center; padding: 20px; background: var(--bg-surface); border-radius: 12px;">
+                            <h3 style="font-size: 2.5rem; color: var(--primary-blue);">500k+</h3>
+                            <p class="text-muted">Happy Customers</p>
+                        </div>
+                        <div
+                            style="text-align: center; padding: 20px; background: var(--bg-surface); border-radius: 12px;">
+                            <h3 style="font-size: 2.5rem; color: var(--primary-blue);">10k+</h3>
+                            <p class="text-muted">Products</p>
+                        </div>
+                        <div
+                            style="text-align: center; padding: 20px; background: var(--bg-surface); border-radius: 12px;">
+                            <h3 style="font-size: 2.5rem; color: var(--primary-blue);">150+</h3>
+                            <p class="text-muted">Brand Partners</p>
+                        </div>
+                        <div
+                            style="text-align: center; padding: 20px; background: var(--bg-surface); border-radius: 12px;">
+                            <h3 style="font-size: 2.5rem; color: var(--primary-blue);">24/7</h3>
+                            <p class="text-muted">Expert Support</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vision & Mission -->
+            <section class="section-padding" style="background: var(--bg-surface);">
+                <div class="container grid grid-2" style="gap: 40px;">
+                    <div
+                        style="background: var(--bg-dark); padding: 50px; border-radius: 16px; border: 1px solid var(--border-subtle); position: relative; overflow: hidden;">
+                        <i class="fa-solid fa-eye"
+                            style="position: absolute; right: 20px; bottom: 20px; font-size: 10rem; opacity: 0.05;"></i>
+                        <h3 style="font-size: 2rem; margin-bottom: 20px; color: var(--primary-blue);">Our Vision</h3>
+                        <p class="text-muted" style="font-size: 1.1rem;">To create a deeply interconnected world where
+                            advanced technology is seamlessly integrated into everyday life, unlocking human potential
+                            and creativity across the globe.</p>
+                    </div>
+                    <div
+                        style="background: var(--bg-dark); padding: 50px; border-radius: 16px; border: 1px solid var(--border-subtle); position: relative; overflow: hidden;">
+                        <i class="fa-solid fa-bullseye"
+                            style="position: absolute; right: 20px; bottom: 20px; font-size: 10rem; opacity: 0.05;"></i>
+                        <h3 style="font-size: 2rem; margin-bottom: 20px; color: var(--secondary-purple);">Our Mission
+                        </h3>
+                        <p class="text-muted" style="font-size: 1.1rem;">To curate and deliver the most innovative,
+                            reliable, and high-performance electronic devices, backed by unparalleled customer expertise
+                            and a commitment to sustainability.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Immersive Visual Section -->
+            <section style="height: 400px; position: relative; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2000&auto=format&fit=crop"
+                    alt="Tech Environment" style="width: 100%; height: 100%; object-fit: cover;">
+                <div
+                    style="position: absolute; inset: 0; background: linear-gradient(to right, rgba(15, 17, 21, 0.8), transparent);">
+                </div>
+                <div class="container" style="position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;">
+                    <h2 style="font-size: 3rem; max-width: 600px; color: #fff;">Engineering the Future of <br><span
+                            class="text-gradient">Personal Tech</span></h2>
+                </div>
+            </section>
+
+            <!-- Why Choose Us -->
+            <section class="section-padding container">
+                <div class="section-title text-center">Why Choose AURA</div>
+                <div class="section-subtitle text-center">What sets us apart in the digital marketplace</div>
+                <div class="grid grid-4" style="gap: 20px;">
+                    <div
+                        style="padding: 30px; border: 1px solid var(--border-subtle); border-radius: 16px; background: var(--bg-surface-elevated); transition: var(--transition-bounce);">
+                        <i class="fa-solid fa-microchip text-gradient"
+                            style="font-size: 2.5rem; margin-bottom: 20px;"></i>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px;">Curated Excellence</h4>
+                        <p class="text-muted">We don't sell everything—we sell the best. Every product undergoes quality assurance testing.</p>
+                    </div>
+                    <div
+                        style="padding: 30px; border: 1px solid var(--border-subtle); border-radius: 16px; background: var(--bg-surface-elevated); transition: var(--transition-bounce);">
+                        <i class="fa-solid fa-truck-fast text-gradient"
+                            style="font-size: 2.5rem; margin-bottom: 20px;"></i>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px;">Lightning Delivery</h4>
+                        <p class="text-muted">Our AI-optimized logistics network ensures your gear arrives securely and faster than standards.</p>
+                    </div>
+                    <div
+                        style="padding: 30px; border: 1px solid var(--border-subtle); border-radius: 16px; background: var(--bg-surface-elevated); transition: var(--transition-bounce);">
+                        <i class="fa-solid fa-headset text-gradient"
+                            style="font-size: 2.5rem; margin-bottom: 20px;"></i>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px;">Expert Support</h4>
+                        <p class="text-muted">Speak directly to certified technicians, not just agents. We understand the tech we sell.</p>
+                    </div>
+                    <div
+                        style="padding: 30px; border: 1px solid var(--border-subtle); border-radius: 16px; background: var(--bg-surface-elevated); transition: var(--transition-bounce);">
+                        <i class="fa-solid fa-shield-halved text-gradient"
+                            style="font-size: 2.5rem; margin-bottom: 20px;"></i>
+                        <h4 style="font-size: 1.3rem; margin-bottom: 15px;">Secure Payments</h4>
+                        <p class="text-muted">Your data is protected by bank-level encryption. Shop with confidence and peace of mind.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Executive Leadership (Fulfilling Point 28 & 12) -->
+            <section class="section-padding container">
+                <div class="section-title text-center">Executive Leadership</div>
+                <div class="section-subtitle text-center">The visionaries behind the next generation of tech</div>
+                <div class="grid grid-4" style="gap: 30px;">
+                    <!-- Member 1: Founder -->
+                    <div class="team-card" style="text-align: center;">
+                        <div style="width: 200px; height: 200px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden; border: 3px solid var(--primary-blue); box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);">
+                            <img src="file:///Users/venkatragavn/.gemini/antigravity/brain/c1e89f75-7025-451e-896c-60e40c8e0412/ceo_marcus_vance_1775139511329.png" alt="Marcus Vance" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 style="font-size: 1.4rem; margin-bottom: 5px;">Marcus Vance</h4>
+                        <p class="text-gradient" style="font-weight: 600; margin-bottom: 12px; font-size: 0.9rem; text-transform: uppercase;">Founder & CEO</p>
+                        <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 15px;">A tech visionary with 20+ years of experience in hardware disruption.</p>
+                        <div style="display: flex; justify-content: center; gap: 15px;">
+                            <a href="#" style="color: var(--text-main); transition: all 0.3s;" class="social-icon-hover"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" style="color: var(--text-main); transition: all 0.3s;" class="social-icon-hover"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Member 2: CTO -->
+                    <div class="team-card" style="text-align: center;">
+                        <div style="width: 200px; height: 200px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden; border: 3px solid var(--secondary-purple); box-shadow: 0 0 20px rgba(138, 43, 226, 0.2);">
+                            <img src="file:///Users/venkatragavn/.gemini/antigravity/brain/c1e89f75-7025-451e-896c-60e40c8e0412/cto_elena_sterling_portrait_1775139528900.png" alt="Dr. Elena Sterling" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 style="font-size: 1.4rem; margin-bottom: 5px;">Dr. Elena Sterling</h4>
+                        <p class="text-gradient" style="font-weight: 600; margin-bottom: 12px; font-size: 0.9rem; text-transform: uppercase;">Chief Technology Officer</p>
+                        <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 15px;">Leading our R&D in quantum computing and silicone architecture.</p>
+                        <div style="display: flex; justify-content: center; gap: 15px;">
+                            <a href="#" style="color: var(--text-main); transition: all 0.3s;" class="social-icon-hover"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" style="color: var(--text-main); transition: all 0.3s;" class="social-icon-hover"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Member 3: Design -->
+                    <div class="team-card" style="text-align: center;">
+                        <div style="width: 200px; height: 200px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden; border: 3px solid var(--primary-blue); box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);">
+                            <img src="file:///Users/venkatragavn/.gemini/antigravity/brain/c1e89f75-7025-451e-896c-60e40c8e0412/head_of_design_julian_chen_portrait_1775139548751.png" alt="Julian Chen" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 style="font-size: 1.4rem; margin-bottom: 5px;">Julian Chen</h4>
+                        <p class="text-gradient" style="font-weight: 600; margin-bottom: 12px; font-size: 0.9rem; text-transform: uppercase;">Head of Design</p>
+                        <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 15px;">Ensuring every AURA product is a masterpiece of form and function.</p>
+                        <div style="display: flex; justify-content: center; gap: 15px;">
+                            <a href="#" style="color: var(--text-main); transition: all 0.3s;" class="social-icon-hover"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" style="color: var(--text-main); transition: all 0.3s;" class="social-icon-hover"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Member 4: Strategy -->
+                    <div class="team-card" style="text-align: center;">
+                        <div style="width: 200px; height: 200px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden; border: 3px solid var(--secondary-purple); box-shadow: 0 0 20px rgba(138, 43, 226, 0.2);">
+                            <img src="file:///Users/venkatragavn/.gemini/antigravity/brain/c1e89f75-7025-451e-896c-60e40c8e0412/cso_sarah_jenkins_portrait_1775139567579.png" alt="Sarah Jenkins" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h4 style="font-size: 1.4rem; margin-bottom: 5px;">Sarah Jenkins</h4>
+                        <p class="text-gradient" style="font-weight: 600; margin-bottom: 12px; font-size: 0.9rem; text-transform: uppercase;">Principal Operations</p>
+                        <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 15px;">Optimizing global supply chains for sustainable tech delivery.</p>
+                        <div style="display: flex; justify-content: center; gap: 15px;">
+                            <a href="#" style="color: var(--text-main); transition: all 0.3s;" class="social-icon-hover"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" style="color: var(--text-main); transition: all 0.3s;" class="social-icon-hover"><i class="fa-brands fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- Technology Expertise -->
+            <section class="section-padding"
+                style="background: var(--bg-surface-elevated); border-top: 1px solid var(--border-subtle);">
+                <div class="container text-center">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Driven by Innovation</h2>
+                    <p class="text-muted" style="max-width: 800px; margin: 0 auto 50px;">We partner strictly with brands
+                        that push the boundaries of modern engineering. From next-generation silicone architectures to
+                        hyper-realistic VR optics, we stay ahead of the curve.</p>
+
+                    <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; opacity: 0.7;">
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                            <i class="fa-solid fa-network-wired" style="font-size: 3rem;"></i>
+                            <span>IoT Systems</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                            <i class="fa-solid fa-vr-cardboard" style="font-size: 3rem;"></i>
+                            <span>AR/VR</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                            <i class="fa-solid fa-satellite-dish" style="font-size: 3rem;"></i>
+                            <span>5G Connectivity</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                            <i class="fa-solid fa-robot" style="font-size: 3rem;"></i>
+                            <span>AI Integration</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="section-padding container text-center">
+                <div
+                    style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(138, 43, 226, 0.1)); border: 1px solid var(--primary-blue); padding: 60px; border-radius: 20px;">
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Ready to Upgrade Your Setup?</h2>
+                    <p class="text-muted"
+                        style="margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">Join half
+                        a million satisfied customers who trust AURA for their advanced electronic and computing
+                        needs.</p>
+                    <a href="products.html" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.1rem;">Shop
+                        Collection <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-top">
+                    <div>
+                        <a href="index.html" class="brand footer-brand"
+                            style="display: flex; align-items: center; gap: 10px;">
+                            <svg width="32" height="32" viewBox="0 0 100 100" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z" fill="url(#grad2)" />
+                                <path d="M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z" fill="var(--bg-dark)" />
+                                <circle cx="50" cy="50" r="15" fill="var(--primary-blue)" />
+                                <defs>
+                                    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="var(--primary-blue)" />
+                                        <stop offset="100%" stop-color="var(--secondary-purple)" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>AURA</span>
+                        </a>
+                        <p class="footer-text">The ultimate destination for next-generation technology. We provide
+                            premium electronics with exceptional customer service and secure delivery.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="products.html">All Products</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">Categories</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Computers & Laptops</a></li>
+                            <li><a href="#">Smartphones</a></li>
+                            <li><a href="#">Audio & Headphones</a></li>
+                            <li><a href="#">Gaming Consoles</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">Contact Us</h4>
+                        <ul class="footer-contact">
+                            <li><i class="fa-solid fa-location-dot"></i> <span>123 Tech Avenue, Silicon Valley, CA
+                                    94043</span></li>
+                            <li><i class="fa-solid fa-envelope"></i> <span>support@technova.com</span></li>
+                            <li><i class="fa-solid fa-phone"></i> <span>+1 (800) 123-4567</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2026 AURA Electronics. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | All Products</title>
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2300f0ff'/%3E%3Cstop offset='100%25' stop-color='%238a2be2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z' fill='url(%23g)'/%3E%3Cpath d='M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z' fill='%230f172a'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%2300f0ff'/%3E%3C/svg%3E">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme || systemTheme);
+        })();
+    </script>
+    <style>
+        .page-header {
+            padding: 60px 0;
+            background: linear-gradient(90deg, var(--bg-surface-elevated), var(--bg-dark));
+            border-bottom: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+            padding: 60px 20px;
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+
+        .shop-layout>div {
+            min-width: 0;
+        }
+
+        .filter-sidebar {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+            height: max-content;
+        }
+
+        .filter-group {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .filter-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filter-list {
+            list-style: none;
+        }
+
+        .filter-list li {
+            margin-bottom: 10px;
+        }
+
+        .filter-list label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color var(--transition-fast);
+        }
+
+        .filter-list label:hover {
+            color: var(--text-main);
+        }
+
+        .filter-list input[type="checkbox"] {
+            accent-color: var(--primary-blue);
+            width: 16px;
+            height: 16px;
+        }
+
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-input {
+            width: 100%;
+            padding: 8px;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            color: var(--text-main);
+            text-align: center;
+        }
+
+        .shop-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: var(--bg-surface);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .page-btn.active,
+        .page-btn:hover {
+            background: var(--primary-blue);
+            color: #000;
+            border-color: var(--primary-blue);
+        }
+
+        @media (max-width: 768px) {
+            .shop-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-sidebar {
+                display: none;
+                /* In real app, toggle with a button */
+            }
+
+            .page-header {
+                padding: 40px 0;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .shop-topbar {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .shop-topbar>div {
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px !important;
+            }
+
+            .shop-topbar select {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .shop-layout {
+                padding: 30px 12px;
+                gap: 24px;
+            }
+
+            .shop-topbar {
+                padding: 12px;
+            }
+
+            .pagination {
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-top: 32px;
+            }
+
+            .page-btn {
+                width: 36px;
+                height: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+        <!-- Navigation -->
+        <header class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 10px;">
+                    <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z" fill="url(#grad1)" />
+                        <path d="M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z" fill="var(--bg-dark)" />
+                        <circle cx="50" cy="50" r="15" fill="var(--primary-blue)" />
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="var(--primary-blue)" />
+                                <stop offset="100%" stop-color="var(--secondary-purple)" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>AURA</span>
+                </a>
+
+                <nav class="nav-links">
+                    <div class="dropdown">
+                        <a href="index.html" class="dropbtn">Home <i class="fa-solid fa-chevron-down"
+                                style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="index.html">Home 1</a>
+                            <a href="index2.html">Home 2</a>
+                        </div>
+                    </div>
+
+                    <a href="products.html" class="active">Products</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+
+                    <div class="dropdown">
+                        <a href="user-dashboard.html" class="dropbtn">Dashboards <i class="fa-solid fa-chevron-down"
+                                style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="user-dashboard.html">User Dashboard</a>
+                            <a href="admin-dashboard.html">Admin Dashboard</a>
+                        </div>
+                    </div>
+                    <div class="show-mobile" style="flex-direction: column; width: 100%; gap: 10px; margin-top: 20px;">
+                        <a href="login.html" class="btn btn-outline btn-nav" style="width: 100%;">Login</a>
+                        <a href="signup.html" class="btn btn-primary btn-nav" style="width: 100%;">Sign Up</a>
+                    </div>
+                </nav>
+
+                <div class="nav-icons">
+                    <button id="rtl-btn" class="nav-icon"
+                        style="background: none; border: none; cursor: pointer; color: var(--text-main);"
+                        title="Toggle RTL/LTR">
+                        <i class="fa-solid fa-globe"></i>
+                    </button>
+                    <button id="theme-toggle" class="nav-icon" title="Toggle Dark/Light Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+                    <div class="hide-mobile" style="display: flex; gap: 15px; align-items: center;">
+                        <a href="login.html" class="btn btn-outline btn-nav">Login</a>
+                        <a href="signup.html" class="btn btn-primary btn-nav">Sign Up</a>
+                    </div>
+
+                    <div class="hamburger"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Page Hero -->
+            <section class="hero-section"
+                style="padding: 100px 0; background: linear-gradient(rgba(10, 12, 16, 0.8), rgba(10, 12, 16, 0.8)), url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=2000&auto=format&fit=crop') center/cover; text-align: center;">
+                <div class="container">
+                    <h1 style="font-size: 4rem; line-height: 1.1; margin-bottom: 20px; color: #fff;">Explore Our <span
+                            class="text-gradient">Collections</span></h1>
+                    <p class="hero-subtext" style="font-size: 1.25rem; max-width: 700px; margin: 0 auto; color: rgba(255, 255, 255, 0.8);">Discover the next generation of computing, mobile, and audio technology.</p>
+                </div>
+            </section>
+
+            <!-- Shop Layout -->
+            <div class="shop-layout">
+
+                <!-- Filter Sidebar -->
+                <aside class="filter-sidebar">
+                    <div class="filter-group">
+                        <h4 class="filter-title">Categories</h4>
+                        <ul class="filter-list">
+                            <li><label><input type="checkbox" checked> All Electronics</label></li>
+                            <li><label><input type="checkbox"> Phones & Tablets</label></li>
+                            <li><label><input type="checkbox"> Computers & Laptops</label></li>
+                            <li><label><input type="checkbox"> Audio & Headphones</label></li>
+                            <li><label><input type="checkbox"> Gaming Components</label></li>
+                            <li><label><input type="checkbox"> Wearable Tech</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-title">Price Range</h4>
+                        <div class="price-range">
+                            <input type="number" class="price-input" placeholder="Min" value="50">
+                            <span class="text-muted">-</span>
+                            <input type="number" class="price-input" placeholder="Max" value="2500">
+                        </div>
+                        <button class="btn btn-outline btn-full" style="margin-top: 15px; padding: 8px;">Apply
+                            Filter</button>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-title">Brands</h4>
+                        <ul class="filter-list">
+                            <li><label><input type="checkbox"> NexaCore</label></li>
+                            <li><label><input type="checkbox"> Quantum</label></li>
+                            <li><label><input type="checkbox"> Zenith Tech</label></li>
+                            <li><label><input type="checkbox"> AeroDynamics</label></li>
+                        </ul>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4 class="filter-title">Rating</h4>
+                        <ul class="filter-list">
+                            <li><label><input type="checkbox"> <span class="product-rating"><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i></span></label></li>
+                            <li><label><input type="checkbox"> <span class="product-rating"><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-regular fa-star"></i></span> & up</label></li>
+                            <li><label><input type="checkbox"> <span class="product-rating"><i
+                                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                            class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i
+                                            class="fa-regular fa-star"></i></span> & up</label></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Product Listing -->
+                <div>
+                    <!-- Topbar -->
+                    <div class="shop-topbar">
+                        <span class="text-muted">Showing 1-9 of 45 products</span>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <span class="text-muted">Sort by:</span>
+                            <select
+                                style="background: var(--bg-dark); color: var(--text-main); border: 1px solid var(--border-subtle); padding: 8px 15px; border-radius: 4px;">
+                                <option>Featured</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Newest Arrivals</option>
+                            </select>
+                            <button class="action-btn"
+                                style="display: none /* hide on desktop, show on mobile to toggle filter */"><i
+                                    class="fa-solid fa-filter"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="grid grid-3">
+
+                        <!-- Product 1 -->
+                        <div class="product-card">
+                            <span class="product-badge">Top Rated</span>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?q=80&w=600&auto=format&fit=crop"
+                                    alt="Headphones">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fa-solid fa-code-compare"></i></button>
+                                    <a href="product-details.html" class="action-btn"><i
+                                            class="fa-regular fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Audio</span>
+                                <h3 class="product-title"><a href="product-details.html">Quantum Sound Pro Wireless
+                                        ANC</a></h3>
+                                <div class="product-rating">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star-half-stroke"></i>
+                                    <span>(124)</span>
+                                </div>
+                                <div class="product-bottom">
+                                    <div class="product-price">$299.99</div>
+                                    <button class="action-btn"
+                                        style="background: var(--primary-blue); color: #fff; border-color: var(--primary-blue);"><i
+                                            class="fa-solid fa-cart-shopping"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 2 -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=600&auto=format&fit=crop"
+                                    alt="Phone">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fa-solid fa-code-compare"></i></button>
+                                    <a href="product-details.html" class="action-btn"><i
+                                            class="fa-regular fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Smartphone</span>
+                                <h3 class="product-title"><a href="product-details.html">NovaPhone X2 Ultra 5G -
+                                        512GB</a></h3>
+                                <div class="product-rating">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                    <span>(84)</span>
+                                </div>
+                                <div class="product-bottom">
+                                    <div class="product-price">$999.00</div>
+                                    <button class="action-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 3 -->
+                        <div class="product-card">
+                            <span class="product-badge" style="background: var(--secondary-purple);">Best Seller</span>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=600&auto=format&fit=crop"
+                                    alt="Laptop">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fa-solid fa-code-compare"></i></button>
+                                    <a href="product-details.html" class="action-btn"><i
+                                            class="fa-regular fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Laptops</span>
+                                <h3 class="product-title"><a href="product-details.html">TechBook Pro 16" M3 Max
+                                        32GB</a></h3>
+                                <div class="product-rating">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-regular fa-star"></i>
+                                    <span>(42)</span>
+                                </div>
+                                <div class="product-bottom">
+                                    <div class="product-price">$2,499.00</div>
+                                    <button class="action-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional grid items to show robust catalog -->
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=600&auto=format&fit=crop"
+                                    alt="Camera">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fa-solid fa-code-compare"></i></button>
+                                    <a href="product-details.html" class="action-btn"><i
+                                            class="fa-regular fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Cameras</span>
+                                <h3 class="product-title"><a href="product-details.html">Lumina Alpha Mark III
+                                        Mirrorless</a></h3>
+                                <div class="product-rating">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star-half-stroke"></i>
+                                    <span>(56)</span>
+                                </div>
+                                <div class="product-bottom">
+                                    <div class="product-price">$1,850.00</div>
+                                    <button class="action-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <span class="product-badge"
+                                style="background: var(--success-green); color: #000;">Sale</span>
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?q=80&w=600&auto=format&fit=crop"
+                                    alt="VR Headset">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fa-solid fa-code-compare"></i></button>
+                                    <a href="product-details.html" class="action-btn"><i
+                                            class="fa-regular fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Gaming</span>
+                                <h3 class="product-title"><a href="product-details.html">MetaQuest 3 VR Headset</a></h3>
+                                <div class="product-rating">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-regular fa-star"></i>
+                                    <span>(218)</span>
+                                </div>
+                                <div class="product-bottom">
+                                    <div class="product-price">$499.00 <span class="product-price-old">$549.00</span>
+                                    </div>
+                                    <button class="action-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?q=80&w=600&auto=format&fit=crop"
+                                    alt="Controller">
+                                <div class="product-actions">
+                                    <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                                    <button class="action-btn"><i class="fa-solid fa-code-compare"></i></button>
+                                    <a href="product-details.html" class="action-btn"><i
+                                            class="fa-regular fa-eye"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-category">Accessories</span>
+                                <h3 class="product-title"><a href="product-details.html">Xbox Elite Wireless Controller
+                                        V2</a></h3>
+                                <div class="product-rating">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                    <span>(92)</span>
+                                </div>
+                                <div class="product-bottom">
+                                    <div class="product-price">$179.99</div>
+                                    <button class="action-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="page-btn"><i class="fa-solid fa-chevron-left"></i></div>
+                        <div class="page-btn active">1</div>
+                        <div class="page-btn">2</div>
+                        <div class="page-btn">3</div>
+                        <div class="page-btn">...</div>
+                        <div class="page-btn">8</div>
+                        <div class="page-btn"><i class="fa-solid fa-chevron-right"></i></div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-top">
+                    <div>
+                        <a href="index.html" class="brand footer-brand"
+                            style="display: flex; align-items: center; gap: 10px;">
+                            <svg width="32" height="32" viewBox="0 0 100 100" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z" fill="url(#grad2)" />
+                                <path d="M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z" fill="var(--bg-dark)" />
+                                <circle cx="50" cy="50" r="15" fill="var(--primary-blue)" />
+                                <defs>
+                                    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="var(--primary-blue)" />
+                                        <stop offset="100%" stop-color="var(--secondary-purple)" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>AURA</span>
+                        </a>
+                        <p class="footer-text">The ultimate destination for next-generation technology. We provide
+                            premium electronics with exceptional customer service and secure delivery.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="products.html">All Products</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">Categories</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Computers & Laptops</a></li>
+                            <li><a href="#">Smartphones</a></li>
+                            <li><a href="#">Audio & Headphones</a></li>
+                            <li><a href="#">Gaming Consoles</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">Contact Us</h4>
+                        <ul class="footer-contact">
+                            <li><i class="fa-solid fa-location-dot"></i> <span>123 Tech Avenue, Silicon Valley, CA
+                                    94043</span></li>
+                            <li><i class="fa-solid fa-envelope"></i> <span>support@technova.com</span></li>
+                            <li><i class="fa-solid fa-phone"></i> <span>+1 (800) 123-4567</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2026 AURA Electronics. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

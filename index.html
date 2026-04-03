@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Home 1</title>
+    <!-- Favicon placeholder -->
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2300f0ff'/%3E%3Cstop offset='100%25' stop-color='%238a2be2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z' fill='url(%23g)'/%3E%3Cpath d='M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z' fill='%230f172a'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%2300f0ff'/%3E%3C/svg%3E">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme || systemTheme);
+        })();
+    </script>
+</head>
+
+<body>
+
+    <!-- Main Wrapper for layout -->
+    <div class="main-wrapper">
+
+        <!-- Navigation -->
+        <header class="navbar">
+            <div class="container nav-container">
+                <a href="index.html" class="brand" style="display: flex; align-items: center; gap: 10px;">
+                    <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z" fill="url(#grad1)" />
+                        <path d="M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z" fill="var(--bg-dark)" />
+                        <circle cx="50" cy="50" r="15" fill="var(--primary-blue)" />
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="var(--primary-blue)" />
+                                <stop offset="100%" stop-color="var(--secondary-purple)" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>AURA</span>
+                </a>
+
+                <nav class="nav-links">
+                    <div class="dropdown">
+                        <a href="index.html" class="dropbtn active">Home <i class="fa-solid fa-chevron-down"
+                                style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="index.html">Home 1</a>
+                            <a href="index2.html">Home 2</a>
+                        </div>
+                    </div>
+
+                    <a href="products.html">Products</a>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+
+                    <div class="dropdown">
+                        <a href="user-dashboard.html" class="dropbtn">Dashboards <i class="fa-solid fa-chevron-down"
+                                style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                        <div class="dropdown-content">
+                            <a href="user-dashboard.html">User Dashboard</a>
+                            <a href="admin-dashboard.html">Admin Dashboard</a>
+                        </div>
+                    </div>
+                    <div class="show-mobile" style="flex-direction: column; width: 100%; gap: 10px; margin-top: 20px;">
+                        <a href="login.html" class="btn btn-outline btn-nav" style="width: 100%;">Login</a>
+                        <a href="signup.html" class="btn btn-primary btn-nav" style="width: 100%;">Sign Up</a>
+                    </div>
+                </nav>
+
+                <div class="nav-icons">
+                    <button id="rtl-btn" class="nav-icon"
+                        style="background: none; border: none; cursor: pointer; color: var(--text-main);"
+                        title="Toggle RTL/LTR">
+                        <i class="fa-solid fa-globe"></i>
+                    </button>
+                    <button id="theme-toggle" class="nav-icon" title="Toggle Dark/Light Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    </button>
+
+                    <div class="hide-mobile" style="display: flex; gap: 15px; align-items: center;">
+                        <a href="login.html" class="btn btn-outline btn-nav">Login</a>
+                        <a href="signup.html" class="btn btn-primary btn-nav">Sign Up</a>
+                    </div>
+
+
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+
+            <!-- Hero Banner -->
+            <section class="hero-section"
+                style="padding: 120px 0; background-image: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.65)), url('https://images.unsplash.com/photo-1624696941338-934bf86c28b4?q=80&w=2000&auto=format&fit=crop'); background-size: cover; background-position: center; text-align: center;">
+                <div class="container" style="text-align: center; max-width: 800px;">
+                    <div class="hero-content">
+                        <span class="product-badge"
+                            style="position: relative; top: 0; display: inline-block; margin-bottom: 25px;">New
+                            Arrival</span>
+                        <h1 style="font-size: 4.5rem; line-height: 1.1; margin-bottom: 25px; color: #fff;">Next-Gen <br><span class="text-gradient">Gaming Rig</span></h1>
+                        <p class="hero-subtext" style="font-size: 1.25rem; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; color: rgba(255, 255, 255, 0.8);">Experience unprecedented
+                            power with our latest RTX 4090 builds. Dominate every game with maximum frames and ray
+                            tracing.</p>
+                        <div class="hero-btns" style="justify-content: center;">
+                            <a href="products.html" class="btn btn-primary" style="padding: 14px 40px;">Shop Now <i
+                                    class="fa-solid fa-arrow-right"></i></a>
+                            <a href="#deals" class="btn btn-outline" style="padding: 14px 40px;">Explore Deals</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Categories -->
+            <section class="section-padding container">
+                <div class="section-title text-center">Top Categories</div>
+                <div class="section-subtitle text-center">Find exactly what you're looking for</div>
+
+                <div class="grid grid-4" style="gap: 20px;">
+                    <!-- Category Item -->
+                    <a href="products.html"
+                        style="background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); transition: var(--transition-fast); overflow: hidden; display: flex; flex-direction: column;">
+                        <div style="height: 120px; overflow: hidden;"><img
+                                src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=500&auto=format&fit=crop"
+                                alt="Phones" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                        <h4 style="margin: 0; padding: 15px;">Phones</h4>
+                    </a>
+                    <a href="products.html"
+                        style="background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); transition: var(--transition-fast); overflow: hidden; display: flex; flex-direction: column;">
+                        <div style="height: 120px; overflow: hidden;"><img
+                                src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=500&auto=format&fit=crop"
+                                alt="Laptops" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                        <h4 style="margin: 0; padding: 15px;">Laptops</h4>
+                    </a>
+                    <a href="products.html"
+                        style="background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); transition: var(--transition-fast); overflow: hidden; display: flex; flex-direction: column;">
+                        <div style="height: 120px; overflow: hidden;"><img
+                                src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=500&auto=format&fit=crop"
+                                alt="Accessories" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                        <h4 style="margin: 0; padding: 15px;">Accessories</h4>
+                    </a>
+                    <a href="products.html"
+                        style="background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); transition: var(--transition-fast); overflow: hidden; display: flex; flex-direction: column;">
+                        <div style="height: 120px; overflow: hidden;"><img
+                                src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=500&auto=format&fit=crop"
+                                alt="Smart Devices" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                        <h4 style="margin: 0; padding: 15px;">Smart Devices</h4>
+                    </a>
+                    <a href="products.html"
+                        style="background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); transition: var(--transition-fast); overflow: hidden; display: flex; flex-direction: column;">
+                        <div style="height: 120px; overflow: hidden;"><img
+                                src="https://images.unsplash.com/photo-1486401899868-0e435ed85128?q=80&w=500&auto=format&fit=crop"
+                                alt="Gaming" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                        <h4 style="margin: 0; padding: 15px;">Gaming</h4>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Featured Products -->
+            <section class="section-padding container">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
+                    <div>
+                        <div class="section-title" style="margin-bottom: 0;">Featured Products</div>
+                    </div>
+                    <a href="products.html" class="text-gradient" style="font-weight: 600;">View All <i
+                            class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="grid grid-4">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <span class="product-badge">Top Rated</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?q=80&w=600&auto=format&fit=crop"
+                                alt="Headphones">
+                            <div class="product-actions">
+                                <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                                <button class="action-btn"><i class="fa-solid fa-code-compare"></i></button>
+                                <a href="product-details.html" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Audio</span>
+                            <h3 class="product-title"><a href="product-details.html">Quantum Sound Pro Wireless ANC
+                                    Headphones</a></h3>
+                            <div class="product-rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star-half-stroke"></i>
+                                <span>(124)</span>
+                            </div>
+                            <div class="product-bottom">
+                                <div class="product-price">$299.99</div>
+                                <button class="action-btn"
+                                    style="background: var(--primary-blue); color: #fff; border-color: var(--primary-blue);"><i
+                                        class="fa-solid fa-cart-shopping"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=600&auto=format&fit=crop"
+                                alt="Phone">
+                            <div class="product-actions">
+                                <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                                <button class="action-btn"><i class="fa-solid fa-code-compare"></i></button>
+                                <a href="product-details.html" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Smartphone</span>
+                            <h3 class="product-title"><a href="product-details.html">NovaPhone X2 Ultra 5G - 512GB</a>
+                            </h3>
+                            <div class="product-rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
+                                <span>(84)</span>
+                            </div>
+                            <div class="product-bottom">
+                                <div class="product-price">$999.00</div>
+                                <button class="action-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <span class="product-badge" style="background: var(--secondary-purple);">Best Seller</span>
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=600&auto=format&fit=crop"
+                                alt="Laptop">
+                            <div class="product-actions">
+                                <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                                <button class="action-btn"><i class="fa-solid fa-code-compare"></i></button>
+                                <a href="product-details.html" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Laptops</span>
+                            <h3 class="product-title"><a href="product-details.html">TechBook Pro 16" M3 Max 32GB
+                                    RAM</a></h3>
+                            <div class="product-rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-regular fa-star"></i>
+                                <span>(42)</span>
+                            </div>
+                            <div class="product-bottom">
+                                <div class="product-price">$2,499.00</div>
+                                <button class="action-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=600&auto=format&fit=crop"
+                                alt="Camera">
+                            <div class="product-actions">
+                                <button class="action-btn"><i class="fa-regular fa-heart"></i></button>
+                                <button class="action-btn"><i class="fa-solid fa-code-compare"></i></button>
+                                <a href="product-details.html" class="action-btn"><i class="fa-regular fa-eye"></i></a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Cameras</span>
+                            <h3 class="product-title"><a href="product-details.html">Lumina Mirrorless Alpha Mark
+                                    III</a></h3>
+                            <div class="product-rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star-half-stroke"></i>
+                                <span>(56)</span>
+                            </div>
+                            <div class="product-bottom">
+                                <div class="product-price">$1,850.00</div>
+                                <button class="action-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deals / Flash Sale -->
+            <section id="deals" class="section-padding"
+                style="background: var(--bg-surface-elevated); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+                <div class="container grid grid-2" style="align-items: center;">
+                    <div class="flash-sale-image" style="display: flex; justify-content: center;">
+                        <div
+                            style="width: 80%; padding-bottom: 80%; position: relative; border-radius: 50%; border: 4px solid var(--sale-red); overflow: hidden; box-shadow: 0 0 30px rgba(255, 51, 102, 0.3);">
+                            <img src="https://images.unsplash.com/photo-1558089687-f282ffcbc126?q=80&w=800&auto=format&fit=crop"
+                                alt="Smart Home Tech"
+                                style="position: absolute; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="flash-sale-content">
+                        <div
+                            style="display: inline-block; background: rgba(255, 51, 102, 0.1); color: var(--sale-red); padding: 5px 15px; border-radius: 20px; font-weight: 700; margin-bottom: 20px;">
+                            ⚡ FLASH SALE ENDS IN</div>
+                        <h2 style="font-size: 3rem; margin-bottom: 20px;">Up to 50% Off<br>Smart Home Tech</h2>
+                        <p class="text-muted" style="margin-bottom: 30px; font-size: 1.1rem;">Upgrade your living space
+                            with our premium selection of smart home devices. Automatic lighting, smart thermostats, and
+                            security systems at unbeatable prices.</p>
+
+                        <!-- Countdown -->
+                        <div class="countdown-container" style="display: flex; gap: 15px; margin-bottom: 40px;">
+                            <div
+                                style="background: var(--bg-dark); border: 1px solid var(--border-subtle); border-radius: 8px; width: 80px; height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <span id="days"
+                                    style="font-size: 1.8rem; font-weight: 700; color: var(--primary-blue);">00</span>
+                                <span
+                                    style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Days</span>
+                            </div>
+                            <div
+                                style="background: var(--bg-dark); border: 1px solid var(--border-subtle); border-radius: 8px; width: 80px; height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <span id="hours"
+                                    style="font-size: 1.8rem; font-weight: 700; color: var(--primary-blue);">00</span>
+                                <span
+                                    style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Hours</span>
+                            </div>
+                            <div
+                                style="background: var(--bg-dark); border: 1px solid var(--border-subtle); border-radius: 8px; width: 80px; height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <span id="minutes"
+                                    style="font-size: 1.8rem; font-weight: 700; color: var(--primary-blue);">00</span>
+                                <span
+                                    style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Mins</span>
+                            </div>
+                            <div
+                                style="background: var(--bg-dark); border: 1px solid var(--border-subtle); border-radius: 8px; width: 80px; height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <span id="seconds"
+                                    style="font-size: 1.8rem; font-weight: 700; color: var(--sale-red);">00</span>
+                                <span
+                                    style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Secs</span>
+                            </div>
+                        </div>
+
+                        <a href="products.html" class="btn btn-primary">Shop Sale <i class="fa-solid fa-tag"></i></a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trending Products Grid -->
+            <section class="section-padding container">
+                <div class="section-title text-center">Trending Now</div>
+                <div class="section-subtitle text-center">Most searched and bought items this week</div>
+
+                <div class="grid grid-4">
+                    <!-- Same card style, just different items -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&w=600&auto=format&fit=crop"
+                                alt="Tablet">
+                            <div class="product-actions"><a href="product-details.html" class="action-btn"><i
+                                        class="fa-regular fa-eye"></i></a></div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title"><a href="product-details.html">ZenPad Pro 12.9" Retina</a></h3>
+                            <div class="product-bottom">
+                                <div class="product-price">$799.00</div>
+                                <button class="btn btn-outline"
+                                    style="padding: 5px 15px; font-size: 0.9rem;">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicate standard card layout for brevity, ensuring visual consistency -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=600&auto=format&fit=crop"
+                                alt="Console">
+                            <div class="product-actions"><a href="product-details.html" class="action-btn"><i
+                                        class="fa-regular fa-eye"></i></a></div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title"><a href="product-details.html">PlayStation 5 Console</a></h3>
+                            <div class="product-bottom">
+                                <div class="product-price">$499.99 <span class="product-price-old">$549.00</span></div>
+                                <button class="btn btn-outline"
+                                    style="padding: 5px 15px; font-size: 0.9rem;">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?q=80&w=600&auto=format&fit=crop"
+                                alt="VR Headset">
+                            <div class="product-actions"><a href="product-details.html" class="action-btn"><i
+                                        class="fa-regular fa-eye"></i></a></div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title"><a href="product-details.html">MetaQuest 3 VR Headset</a></h3>
+                            <div class="product-bottom">
+                                <div class="product-price">$499.00</div>
+                                <button class="btn btn-outline"
+                                    style="padding: 5px 15px; font-size: 0.9rem;">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?q=80&w=600&auto=format&fit=crop"
+                                alt="Controller">
+                            <div class="product-actions"><a href="product-details.html" class="action-btn"><i
+                                        class="fa-regular fa-eye"></i></a></div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title"><a href="product-details.html">Xbox Elite Wireless Controller</a>
+                            </h3>
+                            <div class="product-bottom">
+                                <div class="product-price">$179.99</div>
+                                <button class="btn btn-outline"
+                                    style="padding: 5px 15px; font-size: 0.9rem;">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Brand Partners -->
+            <section class="section-padding" style="background: var(--bg-surface);">
+                <div class="container">
+                    <h5 class="text-center text-muted"
+                        style="margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px;">Trusted by top
+                        brands</h5>
+                    <div
+                        style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 40px; align-items: center; opacity: 0.6;">
+                        <i class="fa-brands fa-apple" style="font-size: 3rem;"></i>
+                        <i class="fa-brands fa-windows" style="font-size: 3rem;"></i>
+                        <i class="fa-brands fa-google" style="font-size: 3rem;"></i>
+                        <i class="fa-brands fa-amazon" style="font-size: 3rem;"></i>
+                        <i class="fa-brands fa-playstation" style="font-size: 3rem;"></i>
+                        <i class="fa-brands fa-xbox" style="font-size: 3rem;"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Category Banners -->
+            <section class="section-padding container">
+                <div class="grid grid-2">
+                    <div
+                        style="position: relative; border-radius: 16px; overflow: hidden; background: url('https://images.unsplash.com/photo-1434493789847-2f02b0c95ce5?q=80&w=800&auto=format&fit=crop') center/cover; padding: 40px; display: flex; flex-direction: column; justify-content: center; min-height: 250px;">
+                        <div
+                            style="position: absolute; inset: 0; background: linear-gradient(to right, var(--nav-bg-solid), transparent); z-index: 1;">
+                        </div>
+                        <div style="position: relative; z-index: 2;">
+                            <h3 style="font-size: 2rem; margin-bottom: 10px;">Smart Watches</h3>
+                            <p class="text-muted" style="margin-bottom: 20px;">Up to 30% off on fitness trackers</p>
+                            <a href="products.html" class="text-gradient" style="font-weight: 700;">Discover Now <i
+                                    class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div
+                        style="position: relative; border-radius: 16px; overflow: hidden; background: url('https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=800&auto=format&fit=crop') center/cover; padding: 40px; display: flex; flex-direction: column; justify-content: center; min-height: 250px;">
+                        <div
+                            style="position: absolute; inset: 0; background: linear-gradient(to right, var(--nav-bg-solid), transparent); z-index: 1;">
+                        </div>
+                        <div style="position: relative; z-index: 2;">
+                            <h3 style="font-size: 2rem; margin-bottom: 10px;">Pro Audio Setup</h3>
+                            <p class="text-muted" style="margin-bottom: 20px;">High-fidelity sound systems</p>
+                            <a href="products.html" class="text-gradient" style="font-weight: 700;">Discover Now <i
+                                    class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Customer Reviews / Testimonials -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="section-title text-center">Customer Reviews</div>
+                    <div class="section-subtitle text-center">What our users say about us</div>                    <div class="grid grid-4" style="gap: 20px; margin-bottom: 40px;">
+                        <!-- Review 1 -->
+                        <div
+                            style="background: var(--bg-surface-elevated); padding: 25px; border-radius: 12px; border: 1px solid var(--border-subtle); display: flex; flex-direction: column;">
+                            <div class="product-rating" style="margin-bottom: 12px;">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
+                            </div>
+                            <p style="font-style: italic; margin-bottom: 15px; font-size: 0.9rem; flex-grow: 1;">"The delivery was incredibly fast and
+                                the quality of the PC parts is top-notch. Will definitely buy again."</p>
+                            <div style="display: flex; gap: 12px; align-items: center;">
+                                <div
+                                    style="width: 40px; height: 40px; background: var(--bg-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <div>
+                                    <h5 style="margin: 0; font-size: 1rem;">Sarah Jenkins</h5>
+                                    <span class="text-muted" style="font-size: 0.75rem;">Verified Buyer</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 2 -->
+                        <div
+                            style="background: var(--bg-surface-elevated); padding: 25px; border-radius: 12px; border: 1px solid var(--border-subtle); display: flex; flex-direction: column;">
+                            <div class="product-rating" style="margin-bottom: 12px;">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                            <p style="font-style: italic; margin-bottom: 15px; font-size: 0.9rem; flex-grow: 1;">"Great customer support. I had an issue
+                                with my smartphone's battery and they replaced it within 2 days."</p>
+                            <div style="display: flex; gap: 12px; align-items: center;">
+                                <div
+                                    style="width: 40px; height: 40px; background: var(--bg-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <div>
+                                    <h5 style="margin: 0; font-size: 1rem;">Mike Thompson</h5>
+                                    <span class="text-muted" style="font-size: 0.75rem;">Verified Buyer</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 3 -->
+                        <div
+                            style="background: var(--bg-surface-elevated); padding: 25px; border-radius: 12px; border: 1px solid var(--border-subtle); display: flex; flex-direction: column;">
+                            <div class="product-rating" style="margin-bottom: 12px;">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
+                            </div>
+                            <p style="font-style: italic; margin-bottom: 15px; font-size: 0.9rem; flex-grow: 1;">"Best prices on the market! I saved over
+                                $200 on my new MacBook. The user interface is very clean."</p>
+                            <div style="display: flex; gap: 12px; align-items: center;">
+                                <div
+                                    style="width: 40px; height: 40px; background: var(--bg-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <div>
+                                    <h5 style="margin: 0; font-size: 1rem;">Elena Rodriguez</h5>
+                                    <span class="text-muted" style="font-size: 0.75rem;">Verified Buyer</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 4 (Newly Added for Point 12) -->
+                        <div
+                            style="background: var(--bg-surface-elevated); padding: 25px; border-radius: 12px; border: 1px solid var(--border-subtle); display: flex; flex-direction: column;">
+                            <div class="product-rating" style="margin-bottom: 12px;">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
+                            </div>
+                            <p style="font-style: italic; margin-bottom: 15px; font-size: 0.9rem; flex-grow: 1;">"Fantastic ecosystem. Everything just works perfectly together. Highly recommend AURA."</p>
+                            <div style="display: flex; gap: 12px; align-items: center;">
+                                <div
+                                    style="width: 40px; height: 40px; background: var(--bg-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <div>
+                                    <h5 style="margin: 0; font-size: 1rem;">David Chen</h5>
+                                    <span class="text-muted" style="font-size: 0.75rem;">Verified Buyer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <a href="#" class="btn btn-outline" style="padding: 12px 40px;">Read More Reviews</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter Subscription -->
+            <section class="section-padding">
+                <div class="container">
+                    <div
+                        style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(138, 43, 226, 0.1)); border: 1px solid var(--primary-blue); border-radius: 20px; padding: 60px 20px; text-align: center; position: relative; overflow: hidden;">
+
+                        <div style="position: relative; z-index: 2; max-width: 600px; margin: 0 auto;">
+                            <h2 style="font-size: 2.5rem; margin-bottom: 15px;">Subscribe to our Newsletter</h2>
+                            <p class="text-muted" style="margin-bottom: 30px;">Get the latest updates on new products
+                                and upcoming sales.</p>
+
+                            <form style="display: flex; gap: 10px;">
+                                <input type="email" placeholder="Your email address..." class="form-control"
+                                    style="flex-grow: 1; border: 1px solid var(--border-subtle); background: var(--bg-surface-elevated);"
+                                    required>
+                                <button type="submit" class="btn btn-primary"
+                                    style="white-space: nowrap;">Subscribe</button>
+                            </form>
+                        </div>
+
+                        <!-- decorative elements -->
+                        <div
+                            style="position: absolute; top: -50px; left: -50px; width: 150px; height: 150px; background: var(--primary-blue); filter: blur(100px); opacity: 0.5;">
+                        </div>
+                        <div
+                            style="position: absolute; bottom: -50px; right: -50px; width: 150px; height: 150px; background: var(--secondary-purple); filter: blur(100px); opacity: 0.5;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-top">
+                    <div>
+                        <a href="index.html" class="brand footer-brand"
+                            style="display: flex; align-items: center; gap: 10px;">
+                            <svg width="32" height="32" viewBox="0 0 100 100" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z" fill="url(#grad2)" />
+                                <path d="M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z" fill="var(--bg-dark)" />
+                                <circle cx="50" cy="50" r="15" fill="var(--primary-blue)" />
+                                <defs>
+                                    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="var(--primary-blue)" />
+                                        <stop offset="100%" stop-color="var(--secondary-purple)" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>AURA</span>
+                        </a>
+                        <p class="footer-text">The ultimate destination for next-generation technology. We provide
+                            premium electronics with exceptional customer service and secure delivery.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="products.html">All Products</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">Categories</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Computers & Laptops</a></li>
+                            <li><a href="#">Smartphones</a></li>
+                            <li><a href="#">Audio & Headphones</a></li>
+                            <li><a href="#">Gaming Consoles</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="footer-title">Contact Us</h4>
+                        <ul class="footer-contact">
+                            <li><i class="fa-solid fa-location-dot"></i> <span>123 Tech Avenue, Silicon Valley, CA
+                                    94043</span></li>
+                            <li><i class="fa-solid fa-envelope"></i> <span>support@technova.com</span></li>
+                            <li><i class="fa-solid fa-phone"></i> <span>+1 (800) 123-4567</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2026 AURA Electronics. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

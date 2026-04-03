@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Admin Dashboard</title>
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%2300f0ff'/%3E%3Cstop offset='100%25' stop-color='%238a2be2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z' fill='url(%23g)'/%3E%3Cpath d='M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z' fill='%230f172a'/%3E%3Ccircle cx='50' cy='50' r='15' fill='%2300f0ff'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme || systemTheme);
+        })();
+    </script>
+    <style>
+        /* Reusing User Dashboard base styles */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-hamburger {
+            display: none;
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-brand {
+            padding: 30px 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        .sidebar-brand .brand {
+            justify-content: center !important;
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 25px;
+            color: var(--text-muted);
+            transition: all var(--transition-fast);
+            border-left: 3px solid transparent;
+        }
+
+        html[dir="rtl"] .sidebar-link {
+            border-left: none;
+            border-right: 3px solid transparent;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            color: var(--primary-blue);
+            background: rgba(0, 240, 255, 0.05);
+            border-left-color: var(--primary-blue);
+        }
+
+        html[dir="rtl"] .sidebar-link:hover,
+        html[dir="rtl"] .sidebar-link.active {
+            border-left-color: transparent;
+            border-right-color: var(--primary-blue);
+        }
+
+        .sidebar-link i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .stat-card {
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 40px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.02));
+            pointer-events: none;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* Force structural synchronization */
+        }
+
+        html[dir="rtl"] .data-table {
+            text-align: right;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            vertical-align: middle;
+            text-align: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .data-table th {
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            background: var(--bg-surface-elevated);
+        }
+
+        /* Fixed column segments for perfect vertical alignment */
+        .col-id { width: 140px; }
+        .col-name { width: auto; }
+        .col-date { width: 180px; }
+        .col-amount { width: 140px; }
+        .col-status { width: 140px; }
+        .col-action { width: 100px; text-align: right !important; }
+
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-delivered {
+            background: rgba(0, 230, 118, 0.1);
+            color: var(--success-green);
+        }
+
+        .status-processing {
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--primary-blue);
+        }
+
+        .status-cancelled {
+            background: rgba(255, 51, 102, 0.1);
+            color: var(--sale-red);
+        }
+
+        .status-low-stock {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--rating-yellow);
+        }
+
+        .rtl-toggle {
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all var(--transition-fast);
+        }
+
+        .rtl-toggle:hover {
+            background: var(--bg-surface);
+            border-color: var(--primary-blue);
+        }
+
+        /* Fake Chart styles */
+        .chart-container {
+            height: 300px;
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            justify-content: space-around;
+        }
+
+        .bar {
+            width: 40px;
+            background: linear-gradient(0deg, var(--primary-blue), var(--secondary-purple));
+            border-radius: 6px 6px 0 0;
+            position: relative;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-hamburger {
+                display: flex;
+            }
+
+            .dashboard-header h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .rtl-toggle span {
+                display: none;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .dashboard-content {
+                padding: 15px;
+            }
+
+            .dashboard-header h1 {
+                font-size: 1.5rem !important;
+            }
+            
+            .dashboard-header .text-muted {
+                font-size: 0.8rem !important;
+            }
+            
+            .dashboard-section-title {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+
+            .chart-container-enhanced {
+                min-height: 200px;
+                padding: 15px 10px;
+                gap: 5px;
+            }
+
+            .chart-bar-enhanced {
+                width: 25px;
+            }
+
+            .donut-container {
+                padding: 20px;
+                min-height: auto;
+            }
+
+            .donut-chart {
+                width: 150px;
+                height: 150px;
+            }
+
+            .donut-hole {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .timeline-container {
+                gap: 10px;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .timeline-point {
+                min-width: 80px;
+            }
+        }
+
+        /* New Infographic Styles */
+        .timeline-container {
+            display: flex;
+            align-items: flex-end;
+            height: 100px;
+            gap: 20px;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .timeline-point {
+            flex: 1;
+            height: 4px;
+            background: var(--border-subtle);
+            position: relative;
+            border-radius: 2px;
+        }
+
+        .timeline-point::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg-surface-elevated);
+            border: 3px solid var(--primary-blue);
+            z-index: 2;
+        }
+
+        .timeline-point.completed {
+            background: var(--primary-blue);
+        }
+
+        .timeline-label {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .category-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .category-bar-track {
+            flex-grow: 1;
+            height: 6px;
+            background: var(--bg-surface);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .category-bar-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard-layout">
+
+        <!-- Sidebar Navigation -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-brand">
+                <a href="index.html" class="brand"
+                    style="justify-content: center; display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                    <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 5 L95 25 L95 75 L50 95 L5 75 L5 25 Z" fill="url(#grad1)" />
+                        <path d="M50 20 L80 35 L80 65 L50 80 L20 65 L20 35 Z" fill="var(--bg-dark)" />
+                        <circle cx="50" cy="50" r="15" fill="var(--primary-blue)" />
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="var(--primary-blue)" />
+                                <stop offset="100%" stop-color="var(--secondary-purple)" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>AURA</span>
+                </a>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="#analytics" class="sidebar-link active">
+                    <i class="fa-solid fa-chart-line"></i> Sales Analytics
+                </a>
+                <a href="#products" class="sidebar-link">
+                    <i class="fa-solid fa-box-open"></i> Product Mgmt
+                </a>
+                <a href="#customers" class="sidebar-link">
+                    <i class="fa-solid fa-users"></i> Customer Mgmt
+                </a>
+                <!-- Link back to User Dashboard -->
+                <a href="user-dashboard.html" class="sidebar-link"
+                    style="margin-top: 20px; color: var(--primary-blue);">
+                    <i class="fa-solid fa-user"></i> Go to User view
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="login.html" class="btn btn-outline btn-full"
+                    style="color: var(--sale-red); border-color: var(--sale-red);">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-content">
+
+            <div class="dashboard-header" style="margin-bottom: 32px;">
+                <div style="display: flex; align-items: baseline; gap: 12px;">
+                    <button class="dashboard-hamburger"><i class="fa-solid fa-bars"></i></button>
+                    <h1 style="margin: 0; font-size: 2rem; font-weight: 800; letter-spacing: -0.5px;">Admin Control Center</h1>
+                    <span class="text-muted" style="font-size: 0.9rem; font-weight: 500;">(v2.4.0)</span>
+                </div>
+
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <button id="theme-toggle" class="rtl-toggle" title="Toggle Dark/Light Mode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <button id="rtl-btn" class="rtl-toggle">
+                        <i class="fa-solid fa-globe"></i> <span>RTL Mode</span>
+                    </button>
+                    <div
+                        style="width: 40px; height: 40px; border-radius: 50%; background: var(--bg-surface-elevated); border: 2px solid var(--secondary-purple); display: flex; justify-content: center; align-items: center; overflow: hidden;">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metrics Overview -->
+            <section>
+                <h2 class="dashboard-section-title">Business Overview</h2>
+                <div class="grid grid-4">
+                    <div class="stat-card">
+                        <p class="text-muted" style="margin-bottom: 5px;">Total Revenue (MTD)</p>
+                        <h3 style="font-size: 2rem; margin: 0; color: var(--success-green);">$84,590.00</h3>
+                        <div class="progress-container">
+                            <div class="progress-header">
+                                <span>Monthly Target</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="background: var(--success-green); width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-muted" style="margin-bottom: 5px;">Active Orders</p>
+                        <h3 style="font-size: 2rem; margin: 0;">145</h3>
+                        <div class="progress-container">
+                            <div class="progress-header">
+                                <span>Fulfillment Rate</span>
+                                <span>92%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="background: var(--primary-blue); width: 92%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-muted" style="margin-bottom: 5px;">New Customers</p>
+                        <h3 style="font-size: 2rem; margin: 0;">324</h3>
+                        <div class="progress-container">
+                            <div class="progress-header">
+                                <span>Growth Target</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="background: var(--secondary-purple); width: 65%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-muted" style="margin-bottom: 5px;">Low Stock Alerts</p>
+                        <h3 style="font-size: 2rem; margin: 0; color: var(--sale-red);">12</h3>
+                        <div class="progress-container">
+                            <div class="progress-header">
+                                <span>Inventory Health</span>
+                                <span>78%</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="background: var(--rating-yellow); width: 78%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Customer Growth Timeline -->
+            <section>
+                <h2 class="dashboard-section-title">Customer Acquisition Milestone</h2>
+                <div class="stat-card">
+                    <div class="timeline-container">
+                        <div class="timeline-point completed">
+                            <span class="timeline-label">100 Users</span>
+                        </div>
+                        <div class="timeline-point completed">
+                            <span class="timeline-label">500 Users</span>
+                        </div>
+                        <div class="timeline-point completed">
+                            <span class="timeline-label">1K Users</span>
+                        </div>
+                        <div class="timeline-point"
+                            style="background: linear-gradient(90deg, var(--primary-blue) 45%, var(--border-subtle) 45%);">
+                            <span class="timeline-label">Target: 2K</span>
+                            <div
+                                style="position: absolute; top: -30px; left: 45%; transform: translateX(-50%); background: var(--primary-blue); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold;">
+                                Current: 1,450</div>
+                        </div>
+                        <div class="timeline-point">
+                            <span class="timeline-label">5K Users</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts & Analytics -->
+            <section class="grid grid-3">
+                <div style="grid-column: span 2;">
+                    <h2 class="dashboard-section-title">Sales Overview</h2>
+                    <div class="chart-container-enhanced">
+                        <div class="chart-bar-enhanced" style="height: 40%;" data-val="$1,240"><span
+                                class="chart-label-enhanced">Mon</span></div>
+                        <div class="chart-bar-enhanced" style="height: 60%;" data-val="$2,100"><span
+                                class="chart-label-enhanced">Tue</span></div>
+                        <div class="chart-bar-enhanced" style="height: 45%;" data-val="$1,580"><span
+                                class="chart-label-enhanced">Wed</span></div>
+                        <div class="chart-bar-enhanced" style="height: 80%;" data-val="$3,420"><span
+                                class="chart-label-enhanced">Thu</span></div>
+                        <div class="chart-bar-enhanced" style="height: 55%;" data-val="$2,310"><span
+                                class="chart-label-enhanced">Fri</span></div>
+                        <div class="chart-bar-enhanced" style="height: 95%;" data-val="$4,850"><span
+                                class="chart-label-enhanced">Sat</span></div>
+                        <div class="chart-bar-enhanced" style="height: 85%;" data-val="$4,120"><span
+                                class="chart-label-enhanced">Sun</span></div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="dashboard-section-title">Traffic Sources</h2>
+                    <div class="donut-container">
+                        <div class="donut-chart">
+                            <div class="donut-hole">
+                                <h4 style="margin: 0; font-size: 1.5rem;">24K</h4>
+                                <span class="text-muted" style="font-size: 0.8rem;">Total Visits</span>
+                            </div>
+                        </div>
+                        <div class="donut-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: var(--primary-blue);"></span> Organic
+                                (45%)
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: var(--secondary-purple);"></span> Direct
+                                (30%)
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: var(--success-green);"></span> Social
+                                (15%)
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: var(--rating-yellow);"></span> Referral
+                                (10%)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-2">
+                <div>
+                    <h2 class="dashboard-section-title">Recent Activity Logs</h2>
+                    <div class="stat-card" style="height: 300px; overflow-y: auto; padding: 0 24px;">
+                        <ul style="list-style: none;">
+                            <li
+                                style="padding: 15px 0; border-bottom: 1px solid var(--border-subtle); display: flex; gap: 15px;">
+                                <div style="color: var(--success-green);"><i class="fa-solid fa-circle-check"></i></div>
+                                <div>
+                                    <p style="margin: 0; font-size: 0.95rem;">Order <strong>#8923</strong> marked as
+                                        delivered.</p>
+                                    <span class="text-muted" style="font-size: 0.8rem;">10 mins ago</span>
+                                </div>
+                            </li>
+                            <li
+                                style="padding: 15px 0; border-bottom: 1px solid var(--border-subtle); display: flex; gap: 15px;">
+                                <div style="color: var(--primary-blue);"><i class="fa-solid fa-user-plus"></i></div>
+                                <div>
+                                    <p style="margin: 0; font-size: 0.95rem;">New user registration: <strong>M.
+                                            Smith</strong></p>
+                                    <span class="text-muted" style="font-size: 0.8rem;">45 mins ago</span>
+                                </div>
+                            </li>
+                            <li
+                                style="padding: 15px 0; border-bottom: 1px solid var(--border-subtle); display: flex; gap: 15px;">
+                                <div style="color: var(--rating-yellow);"><i
+                                        class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div>
+                                    <p style="margin: 0; font-size: 0.95rem;">Inventory Alert: <strong>Quantum Sound
+                                            Pro</strong> low stock (5 left).</p>
+                                    <span class="text-muted" style="font-size: 0.8rem;">2 hours ago</span>
+                                </div>
+                            </li>
+                            <li style="padding: 15px 0; display: flex; gap: 15px;">
+                                <div style="color: var(--sale-red);"><i class="fa-solid fa-ban"></i></div>
+                                <div>
+                                    <p style="margin: 0; font-size: 0.95rem;">Order <strong>#8910</strong> cancelled by
+                                        user.</p>
+                                    <span class="text-muted" style="font-size: 0.8rem;">3 hours ago</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 32px;">
+                    <div>
+                        <h2 class="dashboard-section-title">Analytics & Insights</h2>
+                        <div class="stat-card" style="height: 300px; display: flex; flex-direction: column; justify-content: space-between;">
+                            <div>
+                                <h3
+                                    style="margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                                    Top Categories</h3>
+                                <div class="category-bar-row" style="margin-bottom: 12px;">
+                                    <span style="width: 80px; font-size: 0.85rem;">Laptops</span>
+                                    <div class="category-bar-track" style="flex: 1; margin: 0 15px;">
+                                        <div class="category-bar-fill"
+                                            style="width: 85%; background: var(--primary-blue);"></div>
+                                    </div>
+                                    <span style="font-weight: 600; font-size: 0.85rem;">85%</span>
+                                </div>
+                                </div>
+                                <div class="category-bar-row" style="margin-bottom: 12px;">
+                                    <span style="width: 80px; font-size: 0.85rem;">Mobiles</span>
+                                    <div class="category-bar-track" style="flex: 1; margin: 0 15px;">
+                                        <div class="category-bar-fill"
+                                            style="width: 72%; background: var(--secondary-purple);"></div>
+                                    </div>
+                                    <span style="font-weight: 600; font-size: 0.85rem;">72%</span>
+                                </div>
+                                <div class="category-bar-row">
+                                    <span style="width: 80px; font-size: 0.85rem;">Audio</span>
+                                    <div class="category-bar-track" style="flex: 1; margin: 0 15px;">
+                                        <div class="category-bar-fill"
+                                            style="width: 45%; background: var(--success-green);"></div>
+                                    </div>
+                                    <span style="font-weight: 600; font-size: 0.85rem;">45%</span>
+                                </div>
+                            </div>
+
+                            <div
+                                style="border-top: 1px solid var(--border-subtle); padding-top: 15px; margin-top: 15px;">
+                                <h4
+                                    style="margin-bottom: 15px; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                                    Regional Growth</h4>
+                                <div style="display: flex; gap: 20px;">
+                                    <div style="flex: 1;">
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                            <span style="font-size: 0.75rem;">US/CA</span>
+                                            <span style="font-size: 0.75rem; color: var(--success-green);">+12%</span>
+                                        </div>
+                                        <div class="progress-track" style="height: 4px; background: var(--bg-surface);">
+                                            <div class="progress-fill"
+                                                style="width: 75%; background: var(--primary-blue);"></div>
+                                        </div>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                            <span style="font-size: 0.75rem;">Europe</span>
+                                            <span style="font-size: 0.75rem; color: var(--primary-blue);">+8%</span>
+                                        </div>
+                                        <div class="progress-track" style="height: 4px; background: var(--bg-surface);">
+                                            <div class="progress-fill"
+                                                style="width: 60%; background: var(--secondary-purple);"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
