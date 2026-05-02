@@ -285,15 +285,21 @@
             });
 
             // RTL Toggle Logic
-            const updateRTL = (isRTL) => {
-                document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
-                if (isRTL) {
-                    rtlBtn.classList.add('rtl-active');
-                } else {
-                    rtlBtn.classList.remove('rtl-active');
-                }
-                localStorage.setItem('rtl', isRTL ? 'true' : 'false');
-            };
+                const updateRTL = (isRTL) => {
+                    document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+                    if (isRTL) {
+                        rtlBtn.classList.add('rtl-active');
+                    } else {
+                        rtlBtn.classList.remove('rtl-active');
+                    }
+                    
+                    const rtlLabel = rtlBtn.querySelector('#rtl-label') || rtlBtn.querySelector('span');
+                    if (rtlLabel) {
+                        rtlLabel.textContent = isRTL ? 'RTL' : 'LTR';
+                    }
+                    
+                    localStorage.setItem('rtl', isRTL ? 'true' : 'false');
+                };
 
             const savedRTL = localStorage.getItem('rtl') === 'true';
             updateRTL(savedRTL);
@@ -313,7 +319,7 @@
     <div class="auth-container">
         <div class="auth-controls">
             <button id="rtl-btn" class="auth-control-btn" title="Toggle RTL/LTR Mode">
-                <i class="fa-solid fa-globe"></i>
+                <span id="rtl-label" style="font-weight: 700;">LTR</span>
             </button>
             <button id="theme-toggle" class="auth-control-btn" title="Toggle Dark/Light Mode">
                 <i class="fa-solid fa-moon"></i>

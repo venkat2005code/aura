@@ -187,9 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 rtlBtn.classList.remove('rtl-active');
             }
 
-            const rtlBtnLabel = rtlBtn.querySelector('span');
+            const rtlBtnLabel = rtlBtn.querySelector('#rtl-label') || rtlBtn.querySelector('span');
             if (rtlBtnLabel) {
-                rtlBtnLabel.textContent = isRTL ? 'LTR Mode' : 'RTL Mode';
+                rtlBtnLabel.textContent = isRTL ? 'RTL' : 'LTR';
             }
 
             localStorage.setItem('rtl', isRTL ? 'true' : 'false');

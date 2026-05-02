@@ -415,6 +415,23 @@ h6 { font-size: 1rem; }
   align-items: center;
 }
 
+.nav-toggles {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: 20px;
+}
+
+@media (max-width: 768px) {
+  .nav-toggles {
+    width: 100%;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-subtle);
+    margin-left: 0;
+  }
+}
+
 .hide-mobile {
   display: inline-flex !important;
 }
