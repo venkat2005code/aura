@@ -33,11 +33,42 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Dashboard Sidebar Toggle (for Mobile)
     const dashboardHamburger = document.querySelector('.dashboard-hamburger');
     const sidebar = document.querySelector('.dashboard-sidebar');
+    const sidebarClose = document.getElementById('sidebar-close');
 
     if (dashboardHamburger && sidebar) {
-        dashboardHamburger.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
+        // Create backdrop if it doesn't exist
+        let backdrop = document.querySelector('.sidebar-backdrop');
+        if (!backdrop) {
+            backdrop = document.createElement('div');
+            backdrop.className = 'sidebar-backdrop';
+            document.body.appendChild(backdrop);
+        }
+
+        const toggleSidebar = (state) => {
+            if (state === undefined) {
+                sidebar.classList.toggle('active');
+            } else if (state === 'open') {
+                sidebar.classList.add('active');
+            } else {
+                sidebar.classList.remove('active');
+            }
+
+            if (sidebar.classList.contains('active')) {
+                backdrop.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                backdrop.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        };
+
+        dashboardHamburger.addEventListener('click', () => toggleSidebar());
+        
+        if (sidebarClose) {
+            sidebarClose.addEventListener('click', () => toggleSidebar('close'));
+        }
+
+        backdrop.addEventListener('click', () => toggleSidebar('close'));
     }
 
     // 3. Navbar scroll effect

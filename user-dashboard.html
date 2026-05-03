@@ -227,10 +227,6 @@
                 font-size: 1.3rem !important;
             }
             
-            .dashboard-header .rtl-toggle span {
-                display: none;
-            }
-            
             .stat-card {
                 flex-direction: column;
                 align-items: flex-start;
@@ -264,6 +260,24 @@
             #settings .grid.grid-2 {
                 grid-template-columns: 1fr;
                 gap: 10px !important;
+            }
+        }
+
+        /* Sidebar Close Button */
+        .sidebar-close {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar-close {
+                display: block;
             }
         }
 
@@ -361,6 +375,7 @@
 
         <!-- Sidebar Navigation -->
         <aside class="dashboard-sidebar">
+            <div class="sidebar-close" id="sidebar-close"><i class="fa-solid fa-xmark"></i></div>
             <div class="sidebar-brand">
                 <a href="index.html" class="brand"
                     style="justify-content: center; display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
@@ -406,7 +421,7 @@
                         <i class="fa-solid fa-moon"></i> <span>Theme</span>
                     </button>
                     <button id="rtl-btn" class="rtl-toggle" style="width: 100%; justify-content: flex-start;">
-                        <span id="rtl-label" style="font-weight: 700;">LTR</span>
+                        <i class="fa-solid fa-globe"></i> <span id="rtl-label" style="font-weight: 700;">LTR</span>
                     </button>
                 </div>
             </nav>
@@ -424,7 +439,7 @@
 
             <div class="dashboard-header">
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <button class="dashboard-hamburger"><i class="fa-solid fa-bars"></i></button>
+                    <button class="dashboard-hamburger" id="dashboard-hamburger"><i class="fa-solid fa-bars"></i></button>
                     <h1>Welcome back, John!</h1>
                 </div>
 
