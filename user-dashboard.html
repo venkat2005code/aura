@@ -365,6 +365,91 @@
             border: 2px solid var(--primary-blue);
             z-index: 2;
         }
+
+        /* Tab Switching */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Wishlist Grid */
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .wishlist-card {
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+            position: relative;
+        }
+
+        .wishlist-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--primary-blue);
+        }
+
+        .wishlist-img-wrapper {
+            position: relative;
+            height: 180px;
+            width: 100%;
+            background: var(--bg-surface);
+            overflow: hidden;
+        }
+
+        .wishlist-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .wishlist-card:hover .wishlist-img {
+            transform: scale(1.05);
+        }
+
+        .wishlist-content {
+            padding: 20px;
+        }
+
+        .wishlist-remove-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            z-index: 10;
+        }
+
+        .wishlist-remove-btn:hover {
+            color: var(--sale-red);
+            border-color: var(--sale-red);
+            background: rgba(255, 75, 75, 0.1);
+        }
     </style>
 </head>
 
@@ -410,11 +495,7 @@
                 <a href="#settings" class="sidebar-link">
                     <i class="fa-solid fa-gear"></i> Profile Settings
                 </a>
-                <!-- Link to Admin Dashboard for demo purposes -->
-                <a href="admin-dashboard.html" class="sidebar-link"
-                    style="margin-top: 20px; color: var(--secondary-purple);">
-                    <i class="fa-solid fa-user-shield"></i> Go to Admin
-                </a>
+
 
                 <div class="sidebar-toggles" style="padding: 20px; display: flex; flex-direction: column; gap: 10px;">
                     <button id="theme-toggle" class="rtl-toggle" title="Toggle Dark/Light Mode" style="width: 100%; justify-content: flex-start;">
@@ -452,7 +533,7 @@
             </div>
 
             <!-- Overview Section - Point 24: Standardize Hierarchy -->
-            <section id="overview" style="margin-bottom: 40px;">
+            <div id="overview" class="tab-content active">
                 <h2 style="margin-bottom: 25px; font-size: 1.4rem;">Account Overview</h2>
                 <div class="grid grid-3" style="margin-bottom: 30px;">
                     <div class="stat-card">
@@ -599,10 +680,10 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
             <!-- Recent Orders Section -->
-            <section id="orders" style="margin-bottom: 40px;">
+            <div id="orders" class="tab-content">
                 <h3 style="margin-bottom: 20px;">Recent Orders</h3>
                 <div
                     style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 20px;">
@@ -650,89 +731,185 @@
                         </table>
                     </div>
                 </div>
-            </section>
-
-            <!-- Addresses & Settings Grid -->
-            <div class="grid grid-2">
-                <!-- Saved Addresses -->
-                <section id="addresses">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                        <h3 style="margin: 0;">Saved Addresses</h3>
-                        <button class="text-gradient"
-                            style="background: none; border: none; font-weight: 600; cursor: pointer;"><i
-                                class="fa-solid fa-plus"></i> Add New</button>
-                    </div>
-
-                    <div style="display: flex; flex-direction: column; gap: 15px;">
-                        <div class="address-card default">
-                            <span class="status-badge status-processing"
-                                style="position: absolute; top: 15px; right: 15px; padding: 3px 10px;">Default</span>
-                            <h4 style="margin-bottom: 10px;">Home</h4>
-                            <p class="text-muted" style="margin-bottom: 15px; font-size: 0.95rem;">John Doe<br>456 Tech
-                                Lane, Apt 2B<br>San Jose, CA 95112<br>United States<br>+1 (555) 123-4567</p>
-                            <div style="display: flex; gap: 10px;">
-                                <button class="btn btn-outline"
-                                    style="padding: 5px 15px; font-size: 0.85rem;">Edit</button>
-                                <button class="btn btn-outline"
-                                    style="padding: 5px 15px; font-size: 0.85rem; border-color: var(--sale-red); color: var(--sale-red);">Delete</button>
-                            </div>
-                        </div>
-
-                        <div class="address-card">
-                            <h4 style="margin-bottom: 10px;">Office</h4>
-                            <p class="text-muted" style="margin-bottom: 15px; font-size: 0.95rem;">John Doe<br>123
-                                Innovation Drive, Floor 4<br>San Francisco, CA 94105<br>United States<br>+1 (555)
-                                987-6543</p>
-                            <div style="display: flex; gap: 10px;">
-                                <button class="btn btn-outline" style="padding: 5px 15px; font-size: 0.85rem;">Set
-                                    Default</button>
-                                <button class="btn btn-outline"
-                                    style="padding: 5px 15px; font-size: 0.85rem;">Edit</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Profile Settings -->
-                <section id="settings">
-                    <h3 style="margin-bottom: 20px;">Profile Settings</h3>
-                    <div
-                        style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 30px;">
-                        <form>
-                            <div class="grid grid-2" style="gap: 20px;">
-                                <div class="form-group" style="margin-bottom: 0;">
-                                    <label>First Name</label>
-                                    <input type="text" class="form-control" value="John">
-                                </div>
-                                <div class="form-group" style="margin-bottom: 0;">
-                                    <label>Last Name</label>
-                                    <input type="text" class="form-control" value="Doe">
-                                </div>
-                            </div>
-
-                            <div class="form-group" style="margin-top: 20px;">
-                                <label>Email Address</label>
-                                <input type="email" class="form-control" value="john.doe@example.com" readonly
-                                    style="opacity: 0.7;">
-                            </div>
-
-                            <div class="form-group" style="margin-top: 20px;">
-                                <label>Current Password</label>
-                                <input type="password" class="form-control" placeholder="••••••••">
-                            </div>
-
-                            <div class="form-group" style="margin-top: 20px;">
-                                <label>New Password</label>
-                                <input type="password" class="form-control" placeholder="Leave blank to keep same">
-                            </div>
-
-                            <button type="button" class="btn btn-primary" style="margin-top: 20px;">Save
-                                Changes</button>
-                        </form>
-                    </div>
-                </section>
             </div>
+
+            <!-- Wishlist Tab -->
+            <div id="wishlist" class="tab-content">
+                <h3 style="margin-bottom: 20px;">My Wishlist</h3>
+                <div class="wishlist-grid">
+                    <div class="wishlist-card">
+                        <button class="wishlist-remove-btn" title="Remove from Wishlist"><i class="fa-solid fa-xmark"></i></button>
+                        <div class="wishlist-img-wrapper">
+                            <img class="wishlist-img" src="https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?q=80&w=350&auto=format&fit=crop" alt="Ultra Vision VR">
+                        </div>
+                        <div class="wishlist-content">
+                            <h4 style="margin-bottom: 5px;">Ultra Vision VR</h4>
+                            <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 15px;">Wearables • VR Headset</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: 700; font-size: 1.2rem; color: var(--text-main);">$599.00</span>
+                                <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.85rem;"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wishlist-card">
+                        <button class="wishlist-remove-btn" title="Remove from Wishlist"><i class="fa-solid fa-xmark"></i></button>
+                        <div class="wishlist-img-wrapper">
+                            <img class="wishlist-img" src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?q=80&w=350&auto=format&fit=crop" alt="Sonic Pulse Pro">
+                        </div>
+                        <div class="wishlist-content">
+                            <h4 style="margin-bottom: 5px;">Sonic Pulse Pro</h4>
+                            <p class="text-muted" style="font-size: 0.9rem; margin-bottom: 15px;">Audio • Headphones</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: 700; font-size: 1.2rem; color: var(--text-main);">$199.99</span>
+                                <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.85rem;"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Saved Addresses Tab -->
+            <div id="addresses" class="tab-content">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="margin: 0;">Saved Addresses</h3>
+                    <button class="text-gradient"
+                        style="background: none; border: none; font-weight: 600; cursor: pointer;"><i
+                            class="fa-solid fa-plus"></i> Add New</button>
+                </div>
+
+                <div class="grid grid-2" style="gap: 20px;">
+                    <div class="address-card default">
+                        <span class="status-badge status-processing"
+                            style="position: absolute; top: 15px; right: 15px; padding: 3px 10px;">Default</span>
+                        <h4 style="margin-bottom: 10px;">Home</h4>
+                        <p class="text-muted" style="margin-bottom: 15px; font-size: 0.95rem;">John Doe<br>456 Tech
+                            Lane, Apt 2B<br>San Jose, CA 95112<br>United States<br>+1 (555) 123-4567</p>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-outline"
+                                style="padding: 5px 15px; font-size: 0.85rem;">Edit</button>
+                            <button class="btn btn-outline"
+                                style="padding: 5px 15px; font-size: 0.85rem; border-color: var(--sale-red); color: var(--sale-red);">Delete</button>
+                        </div>
+                    </div>
+
+                    <div class="address-card">
+                        <h4 style="margin-bottom: 10px;">Office</h4>
+                        <p class="text-muted" style="margin-bottom: 15px; font-size: 0.95rem;">John Doe<br>123
+                            Innovation Drive, Floor 4<br>San Francisco, CA 94105<br>United States<br>+1 (555)
+                            987-6543</p>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-outline" style="padding: 5px 15px; font-size: 0.85rem;">Set
+                                Default</button>
+                            <button class="btn btn-outline"
+                                style="padding: 5px 15px; font-size: 0.85rem;">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Settings Tab -->
+            <div id="settings" class="tab-content">
+                <h3 style="margin-bottom: 20px;">Profile Settings</h3>
+                <div
+                    style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 30px;">
+                    <form>
+                        <div class="grid grid-2" style="gap: 20px;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" value="John">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" value="Doe">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label>Email Address</label>
+                            <input type="email" class="form-control" value="john.doe@example.com" readonly
+                                style="opacity: 0.7;">
+                        </div>
+
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label>Current Password</label>
+                            <input type="password" class="form-control" placeholder="••••••••">
+                        </div>
+
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label>New Password</label>
+                            <input type="password" class="form-control" placeholder="Leave blank to keep same">
+                        </div>
+
+                        <button type="button" class="btn btn-primary" style="margin-top: 20px;">Save
+                            Changes</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tab Switching Script -->
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const sidebarLinks = document.querySelectorAll('.dashboard-sidebar .sidebar-link');
+                    const tabs = document.querySelectorAll('.dashboard-content .tab-content');
+
+                    function switchTab(hash) {
+                        const targetHash = hash || '#overview';
+                        
+                        // Update active state in sidebar
+                        sidebarLinks.forEach(link => {
+                            const href = link.getAttribute('href');
+                            if (href === targetHash) {
+                                link.classList.add('active');
+                            } else {
+                                link.classList.remove('active');
+                            }
+                        });
+
+                        // Toggle tab-content blocks
+                        tabs.forEach(tab => {
+                            if ('#' + tab.id === targetHash) {
+                                tab.classList.add('active');
+                            } else {
+                                tab.classList.remove('active');
+                            }
+                        });
+
+                        // Auto scroll to top of dashboard content on mobile tab click
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+
+                    sidebarLinks.forEach(link => {
+                        link.addEventListener('click', (e) => {
+                            const href = link.getAttribute('href');
+                            if (href && href.startsWith('#')) {
+                                e.preventDefault();
+                                history.pushState(null, null, href);
+                                switchTab(href);
+
+                                // Close sidebar on mobile
+                                const sidebar = document.querySelector('.dashboard-sidebar');
+                                const backdrop = document.querySelector('.sidebar-backdrop');
+                                if (sidebar && sidebar.classList.contains('active')) {
+                                    sidebar.classList.remove('active');
+                                    if (backdrop) backdrop.classList.remove('active');
+                                    document.body.style.overflow = '';
+                                }
+                            }
+                        });
+                    });
+
+                    // Handle popstate for back/forward browser navigation
+                    window.addEventListener('popstate', () => {
+                        switchTab(window.location.hash);
+                    });
+
+                    // Initial load tab trigger
+                    if (window.location.hash) {
+                        switchTab(window.location.hash);
+                    }
+                });
+            </script>
 
         </main>
     </div>

@@ -69,7 +69,9 @@
                         <a href="login.html" class="btn btn-outline btn-nav" style="width: 100%;">Login</a>
                         <a href="signup.html" class="btn btn-primary btn-nav" style="width: 100%;">Sign Up</a>
                     </div>
+                </nav>
 
+                <div class="nav-icons">
                     <div class="nav-toggles">
                         <button id="rtl-btn" class="nav-icon" title="Toggle RTL/LTR">
                             <span id="rtl-label" style="font-size: 0.9rem; font-weight: 700; letter-spacing: 1px;">LTR</span>
@@ -78,9 +80,6 @@
                             <i class="fa-solid fa-moon"></i>
                         </button>
                     </div>
-                </nav>
-
-                <div class="nav-icons">
                     <div class="hide-mobile" style="display: flex; gap: 15px; align-items: center;">
                         <a href="login.html" class="btn btn-outline btn-nav">Login</a>
                         <a href="signup.html" class="btn btn-primary btn-nav">Sign Up</a>
@@ -125,41 +124,46 @@
                 <div class="section-title text-center">Top Categories</div>
                 <div class="section-subtitle text-center">Find exactly what you're looking for</div>
 
-                <div class="grid grid-4" style="gap: 20px;">
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
                     <!-- Category Item -->
-                    <a href="products.html"
-                        style="background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); transition: var(--transition-fast); overflow: hidden; display: flex; flex-direction: column;">
-                        <div style="height: 120px; overflow: hidden;"><img
-                                src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=500&auto=format&fit=crop"
-                                alt="Phones" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <a href="products.html" class="category-card-home"
+                        style="flex: 1 1 200px; max-width: 220px; background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); overflow: hidden; display: flex; flex-direction: column;">
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px;">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=500&auto=format&fit=crop"
+                                alt="Phones" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px;">
+                        </div>
                         <h4 style="margin: 0; padding: 15px;">Phones</h4>
                     </a>
-                    <a href="products.html"
-                        style="background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); transition: var(--transition-fast); overflow: hidden; display: flex; flex-direction: column;">
-                        <div style="height: 120px; overflow: hidden;"><img
-                                src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=500&auto=format&fit=crop"
-                                alt="Laptops" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <a href="products.html" class="category-card-home"
+                        style="flex: 1 1 200px; max-width: 220px; background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); overflow: hidden; display: flex; flex-direction: column;">
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px;">
+                            <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=500&auto=format&fit=crop"
+                                alt="Laptops" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px;">
+                        </div>
                         <h4 style="margin: 0; padding: 15px;">Laptops</h4>
                     </a>
-                    <a href="products.html"
-                        style="background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); transition: var(--transition-fast); overflow: hidden; display: flex; flex-direction: column;">
-                        <div style="height: 120px; overflow: hidden;"><img
-                                src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=500&auto=format&fit=crop"
-                                alt="Accessories" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <a href="products.html" class="category-card-home"
+                        style="flex: 1 1 200px; max-width: 220px; background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); overflow: hidden; display: flex; flex-direction: column;">
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px;">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=500&auto=format&fit=crop"
+                                alt="Accessories" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px;">
+                        </div>
                         <h4 style="margin: 0; padding: 15px;">Accessories</h4>
                     </a>
-                    <a href="products.html"
-                        style="background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); transition: var(--transition-fast); overflow: hidden; display: flex; flex-direction: column;">
-                        <div style="height: 120px; overflow: hidden;"><img
-                                src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=500&auto=format&fit=crop"
-                                alt="Smart Devices" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <a href="products.html" class="category-card-home"
+                        style="flex: 1 1 200px; max-width: 220px; background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); overflow: hidden; display: flex; flex-direction: column;">
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px;">
+                            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=500&auto=format&fit=crop"
+                                alt="Smart Devices" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px;">
+                        </div>
                         <h4 style="margin: 0; padding: 15px;">Smart Devices</h4>
                     </a>
-                    <a href="products.html"
-                        style="background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); transition: var(--transition-fast); overflow: hidden; display: flex; flex-direction: column;">
-                        <div style="height: 120px; overflow: hidden;"><img
-                                src="https://images.unsplash.com/photo-1486401899868-0e435ed85128?q=80&w=500&auto=format&fit=crop"
-                                alt="Gaming" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                    <a href="products.html" class="category-card-home"
+                        style="flex: 1 1 200px; max-width: 220px; background: var(--bg-surface-elevated); border-radius: 12px; text-align: center; border: 1px solid var(--border-subtle); overflow: hidden; display: flex; flex-direction: column;">
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 10px;">
+                            <img src="https://images.unsplash.com/photo-1486401899868-0e435ed85128?q=80&w=500&auto=format&fit=crop"
+                                alt="Gaming" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px;">
+                        </div>
                         <h4 style="margin: 0; padding: 15px;">Gaming</h4>
                     </a>
                 </div>
@@ -434,14 +438,13 @@
                     <h5 class="text-center text-muted"
                         style="margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px;">Trusted by top
                         brands</h5>
-                    <div
-                        style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 40px; align-items: center; opacity: 0.6;">
-                        <i class="fa-brands fa-apple" style="font-size: 3rem;"></i>
-                        <i class="fa-brands fa-windows" style="font-size: 3rem;"></i>
-                        <i class="fa-brands fa-google" style="font-size: 3rem;"></i>
-                        <i class="fa-brands fa-amazon" style="font-size: 3rem;"></i>
-                        <i class="fa-brands fa-playstation" style="font-size: 3rem;"></i>
-                        <i class="fa-brands fa-xbox" style="font-size: 3rem;"></i>
+                    <div class="brand-partners-container">
+                        <i class="fa-brands fa-apple brand-partner-icon apple"></i>
+                        <i class="fa-brands fa-windows brand-partner-icon windows"></i>
+                        <i class="fa-brands fa-google brand-partner-icon google"></i>
+                        <i class="fa-brands fa-amazon brand-partner-icon amazon"></i>
+                        <i class="fa-brands fa-playstation brand-partner-icon playstation"></i>
+                        <i class="fa-brands fa-xbox brand-partner-icon xbox"></i>
                     </div>
                 </div>
             </section>
@@ -450,7 +453,7 @@
             <section class="section-padding container">
                 <div class="grid grid-2">
                     <div
-                        style="position: relative; border-radius: 16px; overflow: hidden; background: url('https://images.unsplash.com/photo-1434493789847-2f02b0c95ce5?q=80&w=800&auto=format&fit=crop') center/cover; padding: 40px; display: flex; flex-direction: column; justify-content: center; min-height: 250px;">
+                        style="position: relative; border-radius: 16px; overflow: hidden; background: url('https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?q=80&w=800&auto=format&fit=crop') center/cover; padding: 40px; display: flex; flex-direction: column; justify-content: center; min-height: 250px;">
                         <div
                             style="position: absolute; inset: 0; background: linear-gradient(to right, var(--nav-bg-solid), transparent); z-index: 1;">
                         </div>

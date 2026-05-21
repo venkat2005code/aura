@@ -49,9 +49,9 @@
         }
 
         .auth-controls {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            position: fixed;
+            top: 24px;
+            right: 24px;
             display: flex;
             gap: 12px;
             z-index: 1000;
@@ -162,9 +162,7 @@
             border-radius: 8px;
         }
 
-        .social-login-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
+
 
         .auth-footer {
             text-align: center;
@@ -258,7 +256,7 @@
             }
 
             .auth-controls {
-                position: absolute !important;
+                position: fixed !important;
                 top: 15px !important;
                 right: 15px !important;
                 gap: 8px;
@@ -268,6 +266,11 @@
                 width: 38px;
                 height: 38px;
                 border-radius: 10px;
+            }
+
+            .grid.grid-2 {
+                grid-template-columns: 1fr;
+                gap: 15px !important;
             }
         }
     </style>
@@ -316,15 +319,15 @@
 
     <div class="bg-shape shape-1"></div>
     <div class="bg-shape shape-2"></div>
+    <div class="auth-controls">
+        <button id="rtl-btn" class="auth-control-btn" title="Toggle RTL/LTR Mode">
+            <span id="rtl-label" style="font-weight: 700;">LTR</span>
+        </button>
+        <button id="theme-toggle" class="auth-control-btn" title="Toggle Dark/Light Mode">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </div>
     <div class="auth-container">
-        <div class="auth-controls">
-            <button id="rtl-btn" class="auth-control-btn" title="Toggle RTL/LTR Mode">
-                <span id="rtl-label" style="font-weight: 700;">LTR</span>
-            </button>
-            <button id="theme-toggle" class="auth-control-btn" title="Toggle Dark/Light Mode">
-                <i class="fa-solid fa-moon"></i>
-            </button>
-        </div>
         <!-- Clickable Logo -->
         <div class="auth-brand">
             <a href="index.html" class="brand"
@@ -381,15 +384,20 @@
 
         <div class="auth-separator">OR CONTINUE WITH</div>
 
-        <button class="social-login-btn btn-google">
-            <svg width="20" height="20" viewBox="0 0 48 48">
-                <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path>
-                <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path>
-                <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path>
-                <path fill="#1976D2" d="M43.611,20.083L43.611,20.083L42,20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
-            </svg>
-            Continue with Google
-        </button>
+        <div class="grid grid-2" style="gap: 15px;">
+            <button class="social-login-btn btn-social">
+                <svg width="18" height="18" viewBox="0 0 48 48">
+                    <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path>
+                    <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path>
+                    <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path>
+                    <path fill="#1976D2" d="M43.611,20.083L43.611,20.083L42,20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
+                </svg>
+                Google
+            </button>
+            <button class="social-login-btn btn-social">
+                <i class="fa-brands fa-apple" style="font-size: 1.2rem;"></i> Apple
+            </button>
+        </div>
 
         <div class="auth-footer">
             Don't have an account? <a href="signup.html">Create one here</a>

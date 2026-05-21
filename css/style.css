@@ -314,27 +314,6 @@ h6 { font-size: 1rem; }
   transform: translateY(-2px);
 }
 
-.btn-google {
-  background: #fff;
-  color: #1f2937;
-  border: none;
-}
-
-.btn-google:hover {
-  background: #f8fafc;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.btn-apple {
-  background: #000;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.btn-apple:hover {
-  background: #111;
-  border-color: rgba(255, 255, 255, 0.2);
-}
 
 /* ==========================================================================
    Components: Header / Navbar
@@ -418,18 +397,7 @@ h6 { font-size: 1rem; }
 .nav-toggles {
   display: flex;
   align-items: center;
-  gap: 20px;
-  margin-left: 20px;
-}
-
-@media (max-width: 768px) {
-  .nav-toggles {
-    width: 100%;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid var(--border-subtle);
-    margin-left: 0;
-  }
+  gap: 15px;
 }
 
 .hide-mobile {
@@ -936,6 +904,32 @@ textarea.form-control {
   .footer-top {
     grid-template-columns: 1fr 1fr;
   }
+
+  /* Navigation Spacing Refinements to prevent alignment/squishing issues at 1024px */
+  .navbar .container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .nav-links {
+    gap: 16px !important;
+  }
+
+  .nav-links a {
+    font-size: 0.95rem !important;
+  }
+
+  .nav-icons {
+    gap: 12px !important;
+  }
+
+  .nav-toggles {
+    gap: 10px !important;
+  }
+
+  .hide-mobile {
+    gap: 8px !important;
+  }
 }
 
 @media (max-width: 991px) {
@@ -1373,6 +1367,16 @@ textarea.form-control {
 .dropbtn {
   display: flex !important;
   align-items: center;
+}
+
+.dropbtn i {
+  margin-left: 5px !important;
+  margin-right: 0 !important;
+}
+
+html[dir="rtl"] .dropbtn i {
+  margin-left: 0 !important;
+  margin-right: 5px !important;
 }
 
 .dropdown-content {
@@ -1930,4 +1934,53 @@ html[dir="rtl"] .product-price-old {
   font-size: 1.1rem;
   color: var(--text-main);
   box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Brand Partners Styling */
+.brand-partners-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+}
+
+.brand-partner-icon {
+  font-size: 3rem;
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+.brand-partner-icon:hover {
+  transform: scale(1.15);
+}
+
+.brand-partner-icon.apple {
+  color: var(--text-main);
+  opacity: 0.85;
+}
+.brand-partner-icon.windows {
+  color: #0078D7;
+}
+.brand-partner-icon.google {
+  color: #4285F4;
+}
+.brand-partner-icon.amazon {
+  color: #FF9900;
+}
+.brand-partner-icon.playstation {
+  color: #0037AE;
+}
+.brand-partner-icon.xbox {
+  color: #107C10;
+}
+
+/* Category Card Styling (Center Aligned Section) */
+.category-card-home {
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast) !important;
+}
+
+.category-card-home:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-blue) !important;
+  box-shadow: var(--shadow-card) !important;
 }
