@@ -1973,14 +1973,3 @@ html[dir="rtl"] .product-price-old {
 .brand-partner-icon.xbox {
   color: #107C10;
 }
-
-/* Category Card Styling (Center Aligned Section) */
-.category-card-home {
-  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast) !important;
-}
-
-.category-card-home:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary-blue) !important;
-  box-shadow: var(--shadow-card) !important;
-}
